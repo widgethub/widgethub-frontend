@@ -19,9 +19,10 @@ async function loginUser(credentials) {
     body: JSON.stringify(credentials)
   })
     .then(data => data.json())
- */
- return "super secret token";
+  */
+  return "super secret token";
  }
+
 export default function Login() {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
@@ -53,7 +54,6 @@ export default function Login() {
         </label>
         <div>
           <button type="submit">Submit</button>
-          <button type="signup">Sign Up</button>
         </div>
       </form>
     </div>
