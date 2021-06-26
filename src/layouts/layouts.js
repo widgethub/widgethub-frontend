@@ -6,7 +6,7 @@ import {
   useHistory
 } from "react-router-dom";
 import useToken from '../components/Login/useToken';
-import { Login} from '../components/components';
+import { Login } from '../components/components';
 
 
 import Logo from '../assets/logo.png'
