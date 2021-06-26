@@ -20,6 +20,13 @@ async function loginUser(credentials) {
       return res.data.accessToken
     })
     .catch(error => {
+      if(error == 401) {
+        alert("Wrong Username or Password");
+      } else if(error == 418) {
+        alert("Daniel is dead (on the inside only, sadly)");
+      } else {
+        alert("Server Error");
+      }
       return null
     })
 }
@@ -55,12 +62,12 @@ export default function Login() {
               <form class="flex flex-col pt-3 md:pt-8" onSubmit={handleSubmit}>
                   <div class="flex flex-col pt-4">
                       <label for="email" class="text-lg">Username</label>
-                      <input type="text" onChange={e => setUserName(e.target.value)} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
+                      <input type="text" onChange={e => setUserName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
                   </div>
 
                   <div class="flex flex-col pt-4">
                       <label for="password" class="text-lg">Password</label>
-                      <input type="password" onChange={e => setPassword(e.target.value)} class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
+                      <input type="password" onChange={e => setPassword(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
                   </div>
                   
                   <input type="submit" value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8"/>

@@ -12,18 +12,26 @@ import {
 import Logo from '../../assets/logo.png'
 
 async function signupUser(credentials) {
-    return axios.post(API_URL+"auth/login", { ...credentials }, {
+    return axios.post(API_URL+"auth/register", { ...credentials }, {
       headers: {'Content-Type': 'application/json'}
     })
       .then(res => {
+        alert("Account Successfully Created!");
         return res.data.accessToken
       })
       .catch(error => {
+        if(error == 418) {
+        alert("Username Taken");
+        } else if(error == 418) {
+        alert("Daniel is dead (on the inside only, sadly)");
+        } else {
+        alert("Server Error");
+        }
         return null
       })
   }
 
-export default function Login() {
+export default function SignUp() {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
     let history = useHistory();
