@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './css/index.css';
 import {
   BrowserRouter as Router,
@@ -8,10 +8,19 @@ import {
 } from "react-router-dom";
 import { LayoutOne, LayoutTwo } from './layouts/layouts';
 import { One, Two, Three, Four } from './components/components';
+import Login from './components/Login/Login';
 
 import Logo from './assets/logo.png'
+import useToken from './components/Login/useToken';
+
 
 export default function App() {
+  const { token, setToken } = useToken();
+
+  if (!token) {
+    return <Login setToken={setToken} />
+  }
+
   return (
     <Router>
       <header>
