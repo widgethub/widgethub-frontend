@@ -13,6 +13,7 @@ async function loginUser(credentials) {
   return axios.post(API_URL+"auth/login", { ...credentials }, {
     headers: {'Content-Type': 'application/json'}
   })
+<<<<<<< HEAD
     .then(res => {
       return res.data.accessToken
     })
@@ -21,6 +22,13 @@ async function loginUser(credentials) {
     })
 
 }
+=======
+    .then(data => data.json())
+  */
+  return "super secret token";
+ }
+
+>>>>>>> 0fc87935b6bb67c0b9b965460a98333245019129
 export default function Login() {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
@@ -53,7 +61,6 @@ export default function Login() {
         </label>
         <div>
           <button type="submit">Submit</button>
-          <button type="signup">Sign Up</button>
         </div>
       </form>
     </div>

@@ -1,16 +1,15 @@
 .box {
     display: inline-block;
     white-space: nowrap;
-    width: 50%;
+}
+.content {
+    width: 100%;
 }
 
 .leftbox{
-    background-color: orchid;
-}
-.rightbox {
-    background-color: palegreen;
+    width: 100%;
 }
 
 .editor {
-    width: 80%;
+    width: 100%;
 }
