@@ -44,11 +44,13 @@
 }
 
 .logo {
-  height: 50px;
+  height: inherit;
 }
 
 .modetoggle {
   float: right;
+  margin-top: 7px;
+  margin-right: 14px;
 }
 
 .headelement {
@@ -56,9 +58,10 @@
 }
 
 header {
-  height: 100px;
+  height: 50px;
 }
 
-.leftbox {
-  border-style: ridge;
+.content {
+  background-color:coral;
+  height: calc(100vh - 50px);
 }
