@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../../css/Login.css';
 
-import useToken from './useToken';
+import { saveToken } from '../../services/auth.service';
 import axios from 'axios';
 import { API_URL } from '../../config'
 import {
@@ -26,7 +26,6 @@ async function signupUser(credentials) {
 export default function Login() {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
-    const { setToken } = useToken();
     let history = useHistory();
   
     const handleSubmit = async e => {
@@ -37,7 +36,7 @@ export default function Login() {
       });
       if (token !== null) {
         console.log(token,"token is being set?")
-        setToken(token);
+        saveToken(token);
         history.push("/");
       }
     }
