@@ -50,10 +50,8 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
       <Switch>
-        <RouteWrapper path="/one" component={One} layout={LayoutOne} />
-        <RouteWrapper path="/two" component={Two} layout={LayoutOne} />
-        <RouteWrapper path="/three" component={Three} layout={LayoutTwo} />
-        <RouteWrapper path="/four" component={Four} layout={LayoutTwo} />
+        <RouteWrapper path="/" component={Home} layout={LayoutOne} />
+        <RouteWrapper path="/profile" component={Profile} layout={LayoutOne} />
       </Switch>
       </div>
     </Router>
