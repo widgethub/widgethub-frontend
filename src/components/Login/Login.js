@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import '../../css/Login.css';
 import useToken from './useToken';
-import {
-  withRouter
-} from "react-router-dom";
 
 
 async function loginUser(credentials) {
