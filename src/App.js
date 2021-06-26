@@ -16,7 +16,7 @@ export default function App() {
           <Switch>
             <RouteWrapper exact path="/" component={Home} layout={Layout}></RouteWrapper>
             <RouteWrapper exact path="/profiles" component={Profiles} layout={Layout}></RouteWrapper>
-            <RouteWrapper exact path="/login" component={Login} layout={Layout}></RouteWrapper>
+            <Route exact path="/login" component={Login}></Route>
           </Switch>
         </div>
     </div>
