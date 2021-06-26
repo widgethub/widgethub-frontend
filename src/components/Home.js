@@ -35,9 +35,9 @@ export default function Home() {
             <div class="leftbox box">
                 <div class="editor mx-5 lg:w-6/12 bg-gray-800 shadow-2xl rounded-lg overflow-hidden">
                     <div id="header-buttons" class="py-3 px-4 flex">
-                        <div class="rounded-full w-3 h-3 bg-red-500 mr-2"></div>
-                        <div class="rounded-full w-3 h-3 bg-yellow-500 mr-2"></div>
-                        <div class="rounded-full w-3 h-3 bg-green-500"></div>
+                        <button className="px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
+                            Copy Code
+                        </button>
                     </div>
                     <div id="code-area" class="py-4 px-4 mt-1 text-white text-xl">
                         <div class="mb-2">
