@@ -1,33 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/Profiles.css';
 
 import Login from './Login/Login';
 import { getToken, saveToken } from '../services/auth.service';
 // import { getProfiles } from '../services/profile.service';
-import { createProfile, updateProfile, deleteProfile } from '../services/profile.service';
+import { createProfile, updateProfile, deleteProfile, getProfiles } from '../services/profile.service';
 
 export default function Profiles() {
   const [formState, setState] = useState(0);
   // New form - 0
   const [typeSelected, setType] = useState('Github');
-  const [title, setTitle] = useState();
-  const [first, setFirst] = useState();
-  const [last, setLast] = useState();
+  const [name, setName] = useState('');
+  const [first, setFirst] = useState('');
+  const [last, setLast] = useState('');
   const [link, setLink] = useState('github.com/');
-  const [linkVal, setLinkVal] = useState();
+  const [infoVal, setInfoVal] = useState('');
 
   const [profiles, setProfiles] = useState([
-    { title: 'My Exs' , type: 'Github', url: 'zhehaizhang@gmail.com', id: 1},
-    { title: 'Archnemesis', type: 'Instagram', url: 'zhehai@zhang.com', id: 2},
-    { title: 'Me', type: 'Facebook', url: 'zhehaizhang.com', id: 3}
-  ])
+    // { title: 'My Exs' , type: 'Github', url: 'zhehaizhang@gmail.com', id: 1},
+    // { title: 'Archnemesis', type: 'Instagram', url: 'zhehai@zhang.com', id: 2},
+    // { title: 'Me', type: 'Facebook', url: 'zhehaizhang.com', id: 3}
+  ]);
 
   // Update existing profiles - 1
   const [currentProfile, setCurrentProfile] = useState(-1)
 
-  if (!getToken()) {
-    return <Login setToken={saveToken} />
-  }
+  useEffect(async () => {
+    // push user to home page if not logged in
+    if (!getToken()) {
+      return <Login setToken={saveToken} />
+    }
+
+    /* query for profiles */
+    const response = await getProfiles(); 
+    setProfiles(response.data.providers);
+
+  }, []);
 
   const types = [
     {type: "Github", link: "github.com/"},
@@ -48,10 +56,10 @@ export default function Profiles() {
   const editProfile = (index)  => {
     // Update all the values, and then switch the variable as well as index
     setCurrentProfile(index);
-    setTitle(profiles[index].title);
+    setName(profiles[index].name);
     setFirst(profiles[index].first);
     setLast(profiles[index].last);
-    setLinkVal(profiles[index].url);
+    setInfoVal(profiles[index].info);
     setType(profiles[index].type);
     setState(1);
 
@@ -60,10 +68,10 @@ export default function Profiles() {
   const newProfile = (e) => {
     e.preventDefault();
 
-    setTitle('');
+    setName('');
     setFirst('');
     setLast('');
-    setLinkVal('');
+    setInfoVal('');
     setType('');
     setState(0);
   }
@@ -75,20 +83,21 @@ export default function Profiles() {
     if (formState === 0) {
       const newProvider = {
         provider: typeSelected,
-        name: title,
-        info: linkVal
+        name: name,
+        info: infoVal
       }
       // console.log(newProvider);
       const response = await createProfile(newProvider);
       console.log(response);
+      // check to see if we got a 400
 
     } else {
 
       const updateProvider = {
         id: profiles[currentProfile].id,
         provider: typeSelected,
-        name: title,
-        info: linkVal
+        name: name,
+        info: infoVal
       }
       const response = await updateProfile(updateProvider);
       console.log(response);
@@ -108,10 +117,8 @@ export default function Profiles() {
           <ul className="divide-y divide-gray-300">
             {profiles.map(function(profile, i) {
               return (
-                <li key={i} className="p-4 hover:bg-gray-50 cursor-pointer" onClick={() => editProfile(i)}>
-                  {profile.title}
-
-                  /* ZHEHAI IMPLEMENT A DELETE BUTTON SOMEHOW PLOX */
+                <li key={i} class="p-4 hover:bg-gray-50 cursor-pointer" onClick={() => editProfile(i)}>
+                  {profile.name}
                 </li>
               )
             })}
@@ -134,8 +141,8 @@ export default function Profiles() {
               </label>
               <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
               id="grid-title" type="string" placeholder="Enter the title of your profile"
-              onChange={e => setTitle(e.target.value)} value={title}/>
-              <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
+              onChange={e => setName(e.target.value)} value={name}/>
+              <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
             </div>
           </div>
 
@@ -198,7 +205,7 @@ export default function Profiles() {
               </label>
               <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
               id="grid-link" type="text" placeholder="To Profile"
-              onChange={e => setLinkVal(e.target.value)} value={linkVal}/>
+              onChange={e => setInfoVal(e.target.value)} value={infoVal}/>
             </div>
           </div>
 
