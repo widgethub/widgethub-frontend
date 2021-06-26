@@ -1,1 +1,1 @@
-export const API_URL = "https://zhehaizhang.com/daskjf"
+export const API_URL = "https://widget.discoursevr.space/"

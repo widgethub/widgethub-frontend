@@ -17,9 +17,9 @@ export default function Profiles() {
   const [linkVal, setLinkVal] = useState();
 
   const [profiles, setProfiles] = useState([
-    { name: 'My Exs' , type: 'Github', url: 'zhehaizhang@gmail.com', id: 1},
-    { name: 'Archnemesis', type: 'Instagram', url: 'zhehai@zhang.com', id: 2},
-    { name: 'Me', type: 'Personal website', url: 'zhehaizhang.com', id: 3}
+    { title: 'My Exs' , type: 'Github', url: 'zhehaizhang@gmail.com', id: 1},
+    { title: 'Archnemesis', type: 'Instagram', url: 'zhehai@zhang.com', id: 2},
+    { title: 'Me', type: 'Facebook', url: 'zhehaizhang.com', id: 3}
   ])
 
   // Update existing profiles - 1
@@ -78,6 +78,17 @@ export default function Profiles() {
   const editProfile = (id)  => {
     // Update all the values, and then switch the variable as well as index
     console.log(id, "edit profile")
+    for (var prop in profiles) {
+      if (profiles[prop].id === id) {
+        // Start replacing
+        setTitle(profiles[prop].title);
+        setFirst(profiles[prop].first);
+        setLast(profiles[prop].last);
+        setLinkVal(profiles[prop].url);
+        setType(profiles[prop].type);
+        setState(1);
+      }
+    }
   }
   return(
     <div class="grid grid-cols-2 gap-4 justify-items-center">
@@ -88,7 +99,7 @@ export default function Profiles() {
                   {profiles.map(function(profile, i) {
                         return (<li key={i} class="p-4 hover:bg-gray-50 cursor-pointer"
                           onClick={() => editProfile(profile.id)}
-                        >{profile.name}</li>)
+                        >{profile.title}</li>)
                     
                   })}
           

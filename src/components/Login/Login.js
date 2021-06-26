@@ -12,19 +12,25 @@ import Logo from '../../assets/logo.png'
 
 
 async function loginUser(credentials) {
-  /*
-  return fetch('http://localhost:8080/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
+  return axios.post(API_URL+"auth/login", { ...credentials }, {
+    headers: {'Content-Type': 'application/json'}
   })
+<<<<<<< HEAD
+    .then(res => {
+      return res.data.accessToken
+    })
+    .catch(error => {
+      return null
+    })
+
+}
+=======
     .then(data => data.json())
   */
   return "super secret token";
  }
 
+>>>>>>> 0fc87935b6bb67c0b9b965460a98333245019129
 export default function Login() {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
@@ -38,6 +44,7 @@ export default function Login() {
       password
     });
     if (token !== null) {
+      console.log(token,"token is being set?")
       setToken(token);
       history.push("/");
     }
