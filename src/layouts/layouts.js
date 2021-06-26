@@ -20,7 +20,6 @@ export default function Layout({children}) {
   if (getToken() === null && window.location.pathname !== "/login") {
     console.log("no getToken!")
     history.push("/login")
-    //return <Login/>
   }
   if (window.location.pathname === "/login" && getToken()!== null) {
     console.log("logged in!")

@@ -51,34 +51,34 @@ export default function Login() {
 
   return(
     <div>
-      <div class="w-full flex flex-wrap">
-        <div class="w-full md:w-1/2 flex flex-col">
-          <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24">
+      <div className="w-full flex flex-wrap">
+        <div className="w-full md:w-1/2 flex flex-col">
+          <div className="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-24">
             <img className="headelement logo" src={Logo} alt="logo"/>
           </div>
 
-          <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-              <p class="text-center text-3xl">Whalecum.</p>
-              <form class="flex flex-col pt-3 md:pt-8" onSubmit={handleSubmit}>
-                  <div class="flex flex-col pt-4">
-                      <label for="email" class="text-lg">Username</label>
+          <div className="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+              <p className="text-center text-3xl">Whalecum.</p>
+              <form className="flex flex-col pt-3 md:pt-8" onSubmit={handleSubmit}>
+                  <div className="flex flex-col pt-4">
+                      <label for="email" className="text-lg">Username</label>
                       <input type="text" onChange={e => setUserName(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
                   </div>
 
-                  <div class="flex flex-col pt-4">
-                      <label for="password" class="text-lg">Password</label>
+                  <div className="flex flex-col pt-4">
+                      <label for="password" className="text-lg">Password</label>
                       <input type="password" onChange={e => setPassword(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline"/>
                   </div>
                   
-                  <input type="submit" value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8"/>
+                  <input type="submit" value="Log In" className="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8"/>
               </form>
-              <div class="text-center pt-12 pb-12">
-                  <p>Don't have an account? <Link to="/signup" class="underline font-semibold">Sign Up</Link></p>
+              <div className="text-center pt-12 pb-12">
+                  <p>Don't have an account? <Link to="/signup" className="underline font-semibold">Sign Up</Link></p>
               </div>
           </div>
         </div>
-        <div class="w-1/2 shadow-2xl">
-            <img class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0"/>
+        <div className="w-1/2 shadow-2xl">
+            <img className="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0"/>
         </div>
       </div>
     </div>
