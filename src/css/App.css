@@ -56,7 +56,7 @@ header {
 }
 
 .content {
-  background-color:#F9F9F9;
+  background-color:orange;
   height: calc(100vh - 50px);
 }
 .active\:bg:grey-900:active {

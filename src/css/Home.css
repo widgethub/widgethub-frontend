@@ -1,0 +1,16 @@
+.box {
+    display: inline-block;
+    white-space: nowrap;
+    width: 50%;
+}
+
+.leftbox{
+    background-color: orchid;
+}
+.rightbox {
+    background-color: palegreen;
+}
+
+.editor {
+    width: 80%;
+}

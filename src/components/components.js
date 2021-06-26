@@ -1,8 +1,8 @@
 import React from 'react';
 
+import Home from './Home';
 import Profiles from './Profiles';
 import Login from './Login/Login';
-const Home = () => <h1>Content of psdfasfaage one</h1>;
 
 export {
     Home, Profiles, Login
