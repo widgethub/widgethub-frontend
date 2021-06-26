@@ -62,6 +62,33 @@ header {
 }
 
 .content {
-  background-color:coral;
+  background-color:#F9F9F9;
   height: calc(100vh - 50px);
+}
+.active\:bg:grey-900:active {
+--tw-bg-opacity: 1;
+background-color: rgba(17, 24, 39,var(--tw-bg-opacity));
+}
+.hover\:border-4:hover {
+border-width: 4px;
+}
+.hover\:m-0:hover {
+margin: 0;
+}
+.focus\:border-4:focus {
+border-width: 4px;
+}
+.focus\:m-0:focus {
+margin: 0;
+}
+.active\:border-grey-900:active {
+--tw-bg-opacity: 1;
+border-color: rgba(17, 24, 39,var(--tw-bg-opacity));
+}
+.active\:text-grey-900:active {
+--tw-bg-opacity: 1;
+color: rgba(17, 24, 39,var(--tw-bg-opacity));
+}
+.active\:border-transparent:active {
+border-color: transparent;
 }

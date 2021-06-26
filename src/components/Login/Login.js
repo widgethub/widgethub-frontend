@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import '../../css/Login.css';
+import useToken from './useToken';
+import {
+  withRouter
+} from "react-router-dom";
+
+
 async function loginUser(credentials) {
   /*
   return fetch('http://localhost:8080/login', {
@@ -14,9 +19,10 @@ async function loginUser(credentials) {
  */
  return "super secret token";
  }
-export default function Login( { setToken }) {
+export default function Login() {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
+  const { setToken } = useToken();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -44,8 +50,4 @@ export default function Login( { setToken }) {
       </form>
     </div>
   )
-}
-
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired
 }
