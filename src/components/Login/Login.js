@@ -5,6 +5,7 @@ import useToken from './useToken';
 import axios from 'axios';
 import { API_URL } from '../../config'
 import {
+  Link,
   useHistory
 } from "react-router-dom";
 
@@ -21,8 +22,8 @@ async function loginUser(credentials) {
     .catch(error => {
       return null
     })
-
 }
+
 export default function Login() {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
@@ -51,7 +52,7 @@ export default function Login() {
           </div>
 
           <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
-              <p class="text-center text-3xl">Welcum.</p>
+              <p class="text-center text-3xl">Whalecum.</p>
               <form class="flex flex-col pt-3 md:pt-8" onSubmit={handleSubmit}>
                   <div class="flex flex-col pt-4">
                       <label for="email" class="text-lg">Username</label>
@@ -66,7 +67,7 @@ export default function Login() {
                   <input type="submit" value="Log In" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8"/>
               </form>
               <div class="text-center pt-12 pb-12">
-                  <p>Don't have an account? <a href="register.html" class="underline font-semibold">Register here.</a></p>
+                  <p>Don't have an account? <Link to="/signup" class="underline font-semibold">Sign Up</Link></p>
               </div>
           </div>
         </div>

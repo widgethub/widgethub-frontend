@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import  Layout  from './layouts/layouts';
-import { Home, Profiles, Login } from './components/components';
+import { Home, Profiles, Login, SignUp } from './components/components';
 
 
 export default function App() {
@@ -17,6 +17,7 @@ export default function App() {
             <RouteWrapper exact path="/" component={Home} layout={Layout}></RouteWrapper>
             <RouteWrapper exact path="/profiles" component={Profiles} layout={Layout}></RouteWrapper>
             <Route exact path="/login" component={Login}></Route>
+            <Route exact path="/signup" component={SignUp}></Route>
           </Switch>
         </div>
     </div>
