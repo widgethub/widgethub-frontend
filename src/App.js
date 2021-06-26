@@ -7,7 +7,7 @@ import {
   Link
 } from "react-router-dom";
 
-import { Home, Profiles } from './components/components';
+import { Home, Profiles, ToggleHome, ToggleProfiles } from './components/components';
 
 import Login from './components/Login/Login';
 import Logo from './assets/logo.png'
@@ -25,20 +25,16 @@ export default function App() {
     <Router>
       <header>
         <img class="headelement logo" src={Logo} alt="logo"></img>
-        <div class="headelement modetoggle bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex">
-          <button class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-4 py-2 active" id="grid">
-            <span>Home</span>
-          </button>
-          <button class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-r-full px-4 py-2" id="list">
-            <span>Profiles</span>
-          </button>
-        </div>
+        <switch>
+            <Route exact path="/home" component={ToggleHome}></Route>
+            <Route exact path="/profiles" component={ToggleProfiles}></Route>
+        </switch>
 
       </header>
       <body>
         <div class="content">
           <switch>
-            <Route exact path="/" component={Home}></Route>
+            <Route exact path="/home" component={Home}></Route>
             <Route exact path="/profiles" component={Profiles}></Route>
           </switch>
         </div>

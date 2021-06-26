@@ -62,6 +62,6 @@ header {
 }
 
 .content {
-  background-color:coral;
+  background-color:#F9F9F9;
   height: calc(100vh - 50px);
 }
