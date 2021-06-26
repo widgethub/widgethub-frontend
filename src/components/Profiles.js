@@ -3,7 +3,8 @@ import '../css/Profiles.css';
 
 import Login from './Login/Login';
 import { getToken, saveToken } from '../services/auth.service';
-import { getProfiles } from '../services/profile.service';
+// import { getProfiles } from '../services/profile.service';
+import { createProfile, updateProfile, deleteProfile } from '../services/profile.service';
 
 export default function Profiles() {
   const [formState, setState] = useState(0);
@@ -22,7 +23,7 @@ export default function Profiles() {
   ])
 
   // Update existing profiles - 1
-  const [currentProfile, setCurrent] = useState(0)
+  const [currentProfile, setCurrentProfile] = useState(-1)
 
   if (!getToken()) {
     return <Login setToken={saveToken} />
@@ -44,28 +45,59 @@ export default function Profiles() {
       }
   }
 
-
-  const editProfile = (id)  => {
+  const editProfile = (index)  => {
     // Update all the values, and then switch the variable as well as index
-    console.log(id, "edit profile")
-    for (var prop in profiles) {
-      if (profiles[prop].id === id) {
-        // Start replacing
-        setTitle(profiles[prop].title);
-        setFirst(profiles[prop].first);
-        setLast(profiles[prop].last);
-        setLinkVal(profiles[prop].url);
-        setType(profiles[prop].type);
-        setState(1);
+    setCurrentProfile(index);
+    setTitle(profiles[index].title);
+    setFirst(profiles[index].first);
+    setLast(profiles[index].last);
+    setLinkVal(profiles[index].url);
+    setType(profiles[index].type);
+    setState(1);
+
+  }
+
+  const newProfile = (e) => {
+    e.preventDefault();
+
+    setTitle('');
+    setFirst('');
+    setLast('');
+    setLinkVal('');
+    setType('');
+    setState(0);
+  }
+
+  const submitProfile = async (e) => {
+    e.preventDefault();
+
+    // 0 - new form
+    if (formState === 0) {
+      const newProvider = {
+        provider: typeSelected,
+        name: title,
+        info: linkVal
       }
+      // console.log(newProvider);
+      const response = await createProfile(newProvider);
+      console.log(response);
+
+    } else {
+
+      const updateProvider = {
+        id: profiles[currentProfile].id,
+        provider: typeSelected,
+        name: title,
+        info: linkVal
+      }
+      const response = await updateProfile(updateProvider);
+      console.log(response);
+
     }
   }
 
-  const newProfile = async (e) => {
-    e.preventDefault();
-
-    const resp = await getProfiles();
-    console.log(resp);
+  const removeProfile = async (index) => {
+    await deleteProfile(profiles[index].id);
   }
 
   return(
@@ -75,9 +107,13 @@ export default function Profiles() {
         <div class="bg-white shadow-xl rounded-lg mx-3 mt-6">
           <ul class="divide-y divide-gray-300">
             {profiles.map(function(profile, i) {
-              return (<li key={i} class="p-4 hover:bg-gray-50 cursor-pointer"
-                onClick={() => editProfile(profile.id)}
-              >{profile.title}</li>)
+              return (
+                <li key={i} class="p-4 hover:bg-gray-50 cursor-pointer" onClick={() => editProfile(i)}>
+                  {profile.title}
+
+                  /* ZHEHAI IMPLEMENT A DELETE BUTTON SOMEHOW PLOX */
+                </li>
+              )
             })}
           </ul>
         </div>
@@ -90,6 +126,7 @@ export default function Profiles() {
         <div class="grid bg-white shadow-xl rounded-lg mt-6 place-items-center">
         <form class="w-5/6 max-w-md p-6">
           <p class="text-4xl">Profile</p>
+
           <div class="flex flex-wrap -mx-3 mb-6 mt-6">
             <div class="w-full px-3">
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
@@ -101,6 +138,7 @@ export default function Profiles() {
               <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
             </div>
           </div>
+
           <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
@@ -145,8 +183,8 @@ export default function Profiles() {
               </label>
               <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-link" type="text" placeholder="To Profile"/>
             </div>
-  
           </div>
+
           <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
               <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
@@ -162,15 +200,17 @@ export default function Profiles() {
               id="grid-link" type="text" placeholder="To Profile"
               onChange={e => setLinkVal(e.target.value)} value={linkVal}/>
             </div>
-  
           </div>
-          <button class="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+
+          <button onClick={submitProfile} class="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
               <span class="mr-2">{formState ? <p>Update</p> : <p>Add</p>}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path fill="currentcolor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
             </svg>
           </button> 
+
         </form>
+
         </div>
       </div>
     </div>
