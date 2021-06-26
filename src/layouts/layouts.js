@@ -1,12 +1,10 @@
 import React from 'react';
 import '../css/App.css';
 import {
-  Route,
   Link,
   useHistory
 } from "react-router-dom";
-import useToken from '../components/Login/useToken';
-import { Login } from '../components/components';
+import { getToken } from '../services/auth.service';
 
 
 import Logo from '../assets/logo.png'
@@ -26,15 +24,14 @@ function HeaderView() {
 
 
 export default function Layout({children}) {
-  const { token, setToken } = useToken();
 
   let history = useHistory();
-  if (token() === null && window.location.pathname !== "/login") {
-    console.log("no token!")
+  if (getToken() === null && window.location.pathname !== "/login") {
+    console.log("no getToken!")
     history.push("/login")
     //return <Login/>
   }
-  if (window.location.pathname === "/login" && token()!== null) {
+  if (window.location.pathname === "/login" && getToken()!== null) {
     console.log("logged in!")
     history.push("/");
   }

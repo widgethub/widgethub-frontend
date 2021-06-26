@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import '../css/Home.css';
 
 import Login from './Login/Login';
-import useToken from './Login/useToken';
 
 export default function Home() {
     const [formState, setState] = useState(0);

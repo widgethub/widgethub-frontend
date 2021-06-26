@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import '../css/Profiles.css';
 
 import Login from './Login/Login';
-import useToken from './Login/useToken';
+import { getToken, saveToken } from '../services/auth.service';
+import { getProfiles } from '../services/profile.service';
 
 export default function Profiles() {
-  const { token, setToken } = useToken();
-
   const [formState, setState] = useState(0);
   // New form - 0
   const [typeSelected, setType] = useState('Github');
@@ -25,38 +24,8 @@ export default function Profiles() {
   // Update existing profiles - 1
   const [currentProfile, setCurrent] = useState(0)
 
-  const updateType = (prop) => {
-    if (currentProfile === 0) {
-      setType(prop)
-    }
-    else{
-
-    }
-  }
-  const updateTitle = (prop) => {
-    if (currentProfile === 0) {
-      setTitle(prop)
-    }
-  }
-  const updateFirst = (prop) => {
-    if (currentProfile === 0) {
-      setFirst(prop)
-    }
-  }
-  const updateLast = (prop) => {
-    if (currentProfile === 0) {
-      setLast(prop)
-    }
-  }
-  const updateLink = (prop) => {
-    if (currentProfile === 0) {
-      setLink(prop)
-    }
-  }
-
-
-  if (!token) {
-    return <Login setToken={setToken} />
+  if (!getToken()) {
+    return <Login setToken={saveToken} />
   }
 
   const types = [
@@ -75,6 +44,7 @@ export default function Profiles() {
       }
   }
 
+
   const editProfile = (id)  => {
     // Update all the values, and then switch the variable as well as index
     console.log(id, "edit profile")
@@ -90,26 +60,34 @@ export default function Profiles() {
       }
     }
   }
+
+  const newProfile = async (e) => {
+    e.preventDefault();
+
+    const resp = await getProfiles();
+    console.log(resp);
+  }
+
   return(
     <div class="grid grid-cols-2 gap-4 justify-items-center">
+
       <div class="w-full max-w-lg mt-6">
-        <p class="text-4xl">Profiles</p>
-            <div class="bg-white shadow-xl rounded-lg mx-3 mt-6">
-                <ul class="divide-y divide-gray-300">
-                  {profiles.map(function(profile, i) {
-                        return (<li key={i} class="p-4 hover:bg-gray-50 cursor-pointer"
-                          onClick={() => editProfile(profile.id)}
-                        >{profile.title}</li>)
-                    
-                  })}
-          
-                </ul>
-            </div>
-     </div>
+        <div class="bg-white shadow-xl rounded-lg mx-3 mt-6">
+          <ul class="divide-y divide-gray-300">
+            {profiles.map(function(profile, i) {
+              return (<li key={i} class="p-4 hover:bg-gray-50 cursor-pointer"
+                onClick={() => editProfile(profile.id)}
+              >{profile.title}</li>)
+            })}
+          </ul>
+        </div>
+        <button class="bg-white" onClick={newProfile}>
+          add
+        </button>
+      </div>
+
       <div>
-
-      <div class="grid bg-white shadow-xl rounded-lg mt-6 place-items-center">
-
+        <div class="grid bg-white shadow-xl rounded-lg mt-6 place-items-center">
         <form class="w-5/6 max-w-md p-6">
           <p class="text-4xl">Profile</p>
           <div class="flex flex-wrap -mx-3 mb-6 mt-6">
