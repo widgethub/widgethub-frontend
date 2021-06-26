@@ -1,15 +1,15 @@
 import React from 'react';
 
-const LayoutOne = ({children}) => 
-  <div>
+const LayoutLeft = ({children}) => 
+  <div class="leftbox">
     <h2>Layout One</h2> 
     {children}
   </div>;
 
-const LayoutTwo = ({children}) => 
-  <div>
+const LayoutRight = ({children}) => 
+  <div class="rightbox">
     <h2>Layout Two</h2> 
     {children}
   </div>;
 
-export { LayoutOne, LayoutTwo };
+export { LayoutLeft, LayoutRight };

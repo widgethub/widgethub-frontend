@@ -42,3 +42,23 @@
   border-radius: 9999px;
   color: #63b3ed;
 }
+
+.logo {
+  height: 50px;
+}
+
+.modetoggle {
+  float: right;
+}
+
+.headelement {
+  display: inline-block;
+}
+
+header {
+  height: 100px;
+}
+
+.leftbox {
+  border-style: ridge;
+}
