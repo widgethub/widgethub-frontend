@@ -7,7 +7,6 @@ import {
   Link
 } from "react-router-dom";
 
-import { LayoutLeft, LayoutRight } from './layouts/layouts';
 import { Home, Profiles } from './components/components';
 
 import Login from './components/Login/Login';
@@ -41,31 +40,15 @@ export default function App() {
       <body>
         <div class="leftbox">
           <Switch>
-            <Route path="/" component={Home}/>
-            <Route path="/profiles" component={Profiles}/>
+            <Route exact path="/" >
+              <Home/>
+            </Route>
+            <Route exact path="/profiles" >
+              <Profiles/>
+            </Route>
           </Switch>
         </div>
-        <div class="leftbox">
-          <Switch>
-            <Route path="/" component={Home}/>
-            <Route path="/profiles" component={Profiles}/>
-          </Switch>
-        </div>
-      </body>
+     </body>
     </Router>
-  );
-}
-
-function RouteWrapper({
-  component: Component, 
-  layout: Layout, 
-  ...rest
-}) {
-  return (
-    <Route {...rest} render={(props) =>
-      <Layout {...props}>
-        <Component {...props} />
-      </Layout>
-    } />
   );
 }
