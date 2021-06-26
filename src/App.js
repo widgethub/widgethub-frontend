@@ -25,13 +25,9 @@ export default function App() {
     <Router>
       <header>
         <img class="headelement logo" src={Logo} alt="logo"></img>
-        <div class="headelement modetoggle bg-gray-200 text-sm text-gray-500 leading-none border-2 border-gray-200 rounded-full inline-flex">
-          <button class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-l-full px-4 py-2 active" id="grid">
-            <span>Home</span>
-          </button>
-          <button class="inline-flex items-center transition-colors duration-300 ease-in focus:outline-none hover:text-blue-400 focus:text-blue-400 rounded-r-full px-4 py-2" id="list">
-            <span>Profiles</span>
-          </button>
+        <div class="headelement modetoggle text-sm ">
+          <div class="mb-2"><button class="px-5 py-3 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all"><i class="mdi mdi-circle-outline mr-2 text-xl align-middle leading-none"></i>Button</button></div>
+
         </div>
 
       </header>
