@@ -79,7 +79,6 @@ export default function Profiles() {
     // Update all the values, and then switch the variable as well as index
     console.log(id, "edit profile")
   }
-
   return(
     <div class="grid grid-cols-2 gap-4 justify-items-center">
       <div class="w-full max-w-lg mt-6">
@@ -88,7 +87,7 @@ export default function Profiles() {
                 <ul class="divide-y divide-gray-300">
                   {profiles.map(function(profile, i) {
                         return (<li key={i} class="p-4 hover:bg-gray-50 cursor-pointer"
-                          onClick={editProfile(profile.id)}
+                          onClick={() => editProfile(profile.id)}
                         >{profile.name}</li>)
                     
                   })}

@@ -31,7 +31,7 @@ export default function Home() {
       }
 
     return(
-        <div class="content">
+        <div class="content grid grid-cols-2 gap-4 justify-items-center"> 
             <div class="leftbox box">
                 <div class="editor mx-5 lg:w-6/12 bg-gray-800 shadow-2xl rounded-lg overflow-hidden">
                     <div id="header-buttons" class="py-3 px-4 flex">
