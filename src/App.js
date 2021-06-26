@@ -12,7 +12,7 @@ import { Home, Profiles, Login } from './components/components';
 export default function App() {
   return (
     <div>
-       <div class="content">
+       <div className="content">
           <Switch>
             <RouteWrapper exact path="/" component={Home} layout={Layout}></RouteWrapper>
             <RouteWrapper exact path="/profiles" component={Profiles} layout={Layout}></RouteWrapper>

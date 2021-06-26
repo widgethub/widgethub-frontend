@@ -29,20 +29,23 @@ export default function Layout({children}) {
   const { token, setToken } = useToken();
 
   let history = useHistory();
-  if (!token) {
-    return <Login/>
+  if (token() === null && window.location.pathname !== "/login") {
+    console.log("no token!")
+    history.push("/login")
+    //return <Login/>
   }
-  if (window.location.pathname === "/login" && token) {
+  if (window.location.pathname === "/login" && token()!== null) {
+    console.log("logged in!")
     history.push("/");
   }
 
   return (
     <div>
       <header>
-        <img class="headelement logo" src={Logo} alt="logo"></img>
-        <div class="headelement modetoggle text-sm ">
-          <div class="mb-2">
-            <button class="px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
+        <img className="headelement logo" src={Logo} alt="logo"></img>
+        <div className="headelement modetoggle text-sm ">
+          <div className="mb-2">
+            <button className="px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
             {
               HeaderView()
             }

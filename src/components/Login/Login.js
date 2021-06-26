@@ -3,6 +3,9 @@ import '../../css/Login.css';
 import useToken from './useToken';
 import axios from 'axios';
 import { API_URL } from '../../config'
+import {
+  useHistory
+} from "react-router-dom";
 
 
 async function loginUser(credentials) {
@@ -22,6 +25,7 @@ export default function Login() {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
   const { setToken } = useToken();
+  let history = useHistory();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -29,7 +33,10 @@ export default function Login() {
       username,
       password
     });
-    setToken(token);
+    if (token !== null) {
+      setToken(token);
+      history.push("/");
+    }
   }
 
   return(
