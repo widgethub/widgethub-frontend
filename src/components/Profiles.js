@@ -54,7 +54,7 @@ export default function Profiles() {
   const changeTypeLink = (type) => {
     setType(type)
     for (var prop in types) {
-      if (types[prop].type === type){
+      if (parseInt(types[prop].type) === parseInt(type)){
         setLink(types[prop].link)
       }
     }
@@ -224,8 +224,8 @@ export default function Profiles() {
                 <span className="mr-2">{formState ? <p>Update</p> : <p>Add</p>}</span>
             </button>
 
-            <button onClick={newProfile} className="mx-2 bg-white text-gray-800 font-bold rounded border-b-2 border-yellow-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
-                <span className="mr-2">Clear</span>
+            <button onClick={newProfile} className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+                <span className="mr-2">Close</span>
             </button>
 
             <button onClick={removeProfile} className="mx-2 bg-white text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">

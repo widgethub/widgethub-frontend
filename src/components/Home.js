@@ -84,35 +84,101 @@ export default function Home() {
     btn.addEventListener("click", increment);
     });
 
+    var devpost = ` <script id="widgethubscript">
+    
+    (function(r1,r2){
+      console.log(r1,r2);
+      (function(doc, tag, id){
+          var js,fjs  = doc.getElementById("widgethubscript");
+          if (doc.getElementById(id)) {return;}
+          
+          js = doc.createElement(tag); js.id = id;
+          js.src = 'https://widget.discoursevr.space/cdn/devpost/devpost.js';
+          //js.src = './devpost.js';
+          js.type = "text/javascript";
+          fjs.parentNode.insertBefore(js, fjs);
+          ds = doc.createElement('div'); ds.id = r1;
+          fjs.parentNode.insertBefore(ds, fjs);
+  
+        }(document, 'script', r2));
+
+        
+        window.onload = function() {
+          widget.setOptions( {
+            id: "fairnightzz",
+            theme: 
+            {
+              background1: "indigo-800",
+              background2: "blue-800",
+              titleColor: "indigo-50",
+              titleHoverColor: "red-500",
+              descriptionColor: "gray-300"
+            },
+            edges: true,
+            customMessage: "poo",
+            div: r1
+          })
+
+          widget.render();
+        }
+  
+
+    }(Math.random().toString(36).substring(7), Math.random().toString(36).substring(7)))
+      
+    </script>`
+
+    var github = ` <script id="widgethubscript">
+    
+    (function(r1,r2){
+      console.log(r1,r2);
+      (function(doc, tag, id){
+          var js,fjs  = doc.getElementById("widgethubscript");
+          if (doc.getElementById(id)) {return;}
+          
+          js = doc.createElement(tag); js.id = id;
+          js.src = 'https://widget.discoursevr.space/cdn/github/github.js';
+          //js.src = './github.js';
+          js.type = "text/javascript";
+          fjs.parentNode.insertBefore(js, fjs);
+          ds = doc.createElement('div'); ds.id = r1;
+          fjs.parentNode.insertBefore(ds, fjs);
+  
+        }(document, 'script', r2));
+
+        
+        window.onload = function() {
+          widget.setOptions( {
+            id: "fairnightzz",
+            theme: 
+            {
+              background1: "indigo-800",
+              background2: "blue-800",
+              titleColor: "indigo-50",
+              titleHoverColor: "red-500",
+              descriptionColor: "gray-300"
+            },
+            edges: true,
+            customMessage: "poo",
+            div: r1
+          })
+
+          widget.render();
+        }
+  
+
+    }(Math.random().toString(36).substring(7), Math.random().toString(36).substring(7)))
+      
+    </script>`
+
     return(
         <div className="content grid grid-cols-2 justify-items-center"> 
             <div className="leftbox box">
-                <div className="editor mx-5 lg:w-6/12 bg-gray-800 shadow-2xl rounded-lg overflow-hidden">
-                    <div id="header-buttons" className="py-3 px-4 flex">
-                        <button className="px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
-                            Copy Code
-                        </button>
-                    </div>
-                    <div id="code-area" className="py-4 px-4 mt-1 text-white text-xl">
-                        <div className="mb-2">
-                            <span className="text-yellow-300">const</span> <span className="text-blue-400">pluckDeep</span> <span className="text-green-400">=</span> <span className="text-blue-400">key</span> <span className="text-green-400">=&gt;</span> <span className="text-blue-400">obj</span> <span className="text-green-400">=&gt;</span> <span className="text-purple-600">key</span>.<span className="text-purple-600">split</span>(<span className="text-blue-400">'.'</span>).<span className="text-purple-600">reduce</span>((<span className="text-blue-400">accum</span>, <span className="text-blue-400">key</span>) <span className="text-green-400">=&gt;</span> <span className="text-purple-600">accum</span>[<span className="text-purple-600">key</span>], <span className="text-purple-600">obj</span>)
-                        </div>
-
-                        <div className="mb-2">
-                            <span className="text-yellow-300">const</span> <span className="text-blue-400">compose</span> <span className="text-green-400">=</span> (<span className="cm-meta">...</span><span className="text-blue-400">fns</span>) <span className="text-green-400">=&gt;</span> <span className="text-blue-400">res</span> <span className="text-green-400">=&gt;</span> <span className="text-purple-600">fns</span>.<span className="text-purple-600">reduce</span>((<span className="text-blue-400">accum</span>, <span className="text-blue-400">next</span>) <span className="text-green-400">=&gt;</span> <span className="text-purple-600">next</span>(<span className="text-purple-600">accum</span>), <span className="text-purple-600">res</span>)
-                        </div>
-
-                        <div className="mb-2">
-                            <div className="sub-line">
-                                <span className="text-yellow-300">const</span> <span className="text-blue-400">unfold</span> <span className="text-green-400">=</span> (<span className="text-blue-400">f</span>, <span className="text-blue-400">seed</span>) <span className="text-green-400">=&gt;</span>
-                            </div>
-                            <div className="sub-line ml-8">
-                                <span className="text-yellow-300">const</span> <span className="text-blue-400">go</span> <span className="text-green-400">=</span> (<span className="text-blue-400">f</span>, <span className="text-blue-400">seed</span>, <span className="text-blue-400">acc</span>) <span className="text-green-400">=&gt;</span>
-                            </div>
-                            <div className="sub-line ml-16">
-                                <span className="text-yellow-300">const</span> <span className="text-blue-400">res</span> <span className="text-green-400">=</span> <span className="text-purple-600">f</span>(<span className="text-purple-600">seed</span>)
-                            </div>
-                        </div>
+                <div className="editor">
+                    <button className="copybtn px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
+                        Copy Code
+                    </button>
+                    <div class="mb-6">
+                        <textarea rows="5" name="message" id="message" placeholder="Your Message" class="editorbox w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" required></textarea>
                     </div>
                 </div>
             </div>
@@ -321,6 +387,18 @@ export default function Home() {
                                     <button onClick={(e) => {e.preventDefault(); increment(textshade, setTextShade)}} className="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
                                     <span className="m-auto text-2xl font-thin">+</span>
                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex flex-wrap -mx-3 mb-6 mt-6">
+                            <div className="w-full px-3">
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                    Custom Message
+                                </label>
+                                <div className="relative">
+                                    <input className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="grid-title" type="string" placeholder="Status Message Here"
+                                    onChange={e => setName(e.target.value)} value={name}/>
                                 </div>
                             </div>
                         </div>
