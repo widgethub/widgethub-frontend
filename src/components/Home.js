@@ -51,8 +51,8 @@ export default function Home() {
     var i = 0
     for (var prop in profiles) {
             if (profiles[prop].name === current){
-            setCurrentProfile(i)
-            break
+              setCurrentProfile(i)
+              break
             }
         i+=1
         }
@@ -126,7 +126,7 @@ export default function Home() {
       fetchData()
       // push user to home page if not logged in
 
-     document.getElementById('widget-preview').src = "data:text/html;charset=utf-8," + escape('<div></div>')+escape(Github());
+     //document.getElementById('widget-preview').src = "data:text/html;charset=utf-8," + escape('<div></div>')+escape(Github());
 
     }, []);
 
@@ -153,7 +153,7 @@ export default function Home() {
         
         window.onload = function() {
           widget.setOptions( {
-            id: "${profiles[currentProfile]}",
+            id: "${profiles[currentProfile].info}",
             theme: 
             {
               background1: "${types[bg1color].name.toLowerCase()}-${bg1shade}",
@@ -197,7 +197,7 @@ export default function Home() {
         
         window.onload = function() {
           widget.setOptions( {
-            id: "${profiles[currentProfile]}",
+            id: "${profiles[currentProfile].info}",
             theme: 
             {
               background1: "${types[bg1color].name.toLowerCase()}-${bg1shade}",
@@ -240,7 +240,7 @@ export default function Home() {
         
         window.onload = function() {
           widget.setOptions( {
-            id: "${profiles[currentProfile]}",
+            id: "${profiles[currentProfile].info}",
             theme: 
             {
               background1: "${types[bg1color].name.toLowerCase()}-${bg1shade}",
