@@ -339,7 +339,7 @@ export default function Home() {
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setBG1Color(e.target.value)}} value={bg1color}>
                                     {types.map(function(type, i) {
-                                        return <option key={i} value={i}>{type.type}</option>
+                                        return <option key={i} value={i}>{type.name}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -372,7 +372,7 @@ export default function Home() {
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setBG2Color(e.target.value)}} value={bg2color}>
                                     {types.map(function(type, i) {
-                                        return <option key={i} value={i}>{type.type}</option>
+                                        return <option key={i} value={i}>{type.name}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -405,7 +405,7 @@ export default function Home() {
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setTitleColor(e.target.value)}} value={titlecolor}>
                                     {types.map(function(type, i) {
-                                        return <option key={i} value={i}>{type.type}</option>
+                                        return <option key={i} value={i}>{type.name}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -438,7 +438,7 @@ export default function Home() {
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setTitleColorHover(e.target.value)}} value={titlecolorhover}>
                                     {types.map(function(type, i) {
-                                        return <option key={i} value={i}>{type.type}</option>
+                                        return <option key={i} value={i}>{type.name}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -471,7 +471,7 @@ export default function Home() {
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setTextColor(e.target.value)}} value={textcolor}>
                                     {types.map(function(type, i) {
-                                        return <option key={i} value={i}>{type.type}</option>
+                                        return <option key={i} value={i}>{type.name}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
