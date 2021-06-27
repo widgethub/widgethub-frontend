@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/Home.css';
 
-import Login from './Login/Login';
+import { getProfiles, setProfiles } from '../services/profile.service';
+
 
 export default function Home() {
-    const [formState, setState] = useState(0);
-
     const [bgtype, setBGType] = useState(0);
 
     // Colors
@@ -117,7 +116,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div className="rightbox box">
+            <div>
                 <div className="grid bg-white shadow-xl rounded-lg mt-6 place-items-center">
                     <form className="w-full max-w-md p-6">
                         <p className="text-4xl">Configure</p>
@@ -325,7 +324,7 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
-                    </form>
+                   </form>
                 </div>       
             </div>
         </div>
