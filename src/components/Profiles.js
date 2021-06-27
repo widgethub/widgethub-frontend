@@ -7,9 +7,16 @@ import { getToken, saveToken } from '../services/auth.service';
 import { createProfile, updateProfile, deleteProfile, getProfiles } from '../services/profile.service';
 
 export default function Profiles() {
+
+  /* enums */
+  const GITHUB_PROVIDER =    1;
+  const FACEBOOK_PROVIDER =  2;
+  const INSTAGRAM_PROVIDER = 3;
+  const LINKEDIN_PROVIDER =  4;
+
   const [formState, setState] = useState(0);
   // New form - 0
-  const [typeSelected, setType] = useState('Github');
+  const [typeSelected, setType] = useState(GITHUB_PROVIDER);
   const [name, setName] = useState('');
   const [first, setFirst] = useState('');
   const [last, setLast] = useState('');
@@ -38,19 +45,19 @@ export default function Profiles() {
   }, []);
 
   const types = [
-    {type: "Github", link: "github.com/"},
-    {type: "Facebook", link: "facebook.com/"},
-    {type: "Instagram", link: "instagram.com/"},
-    {type: "Linkedin", link: "linkedin.com/in/"}
+    {type: GITHUB_PROVIDER, link: "github.com/"},
+    {type: FACEBOOK_PROVIDER, link: "facebook.com/"},
+    {type: INSTAGRAM_PROVIDER, link: "instagram.com/"},
+    {type: LINKEDIN_PROVIDER, link: "linkedin.com/in/"}
   ];
 
   const changeTypeLink = (type) => {
     setType(type)
     for (var prop in types) {
-          if (types[prop].type === type){
-            setLink(types[prop].link)
-          }
+      if (types[prop].type === type){
+        setLink(types[prop].link)
       }
+    }
   }
 
   const editProfile = (index)  => {
@@ -62,7 +69,6 @@ export default function Profiles() {
     setInfoVal(profiles[index].info);
     setType(profiles[index].type);
     setState(1);
-
   }
 
   const newProfile = (e) => {
@@ -72,7 +78,7 @@ export default function Profiles() {
     setFirst('');
     setLast('');
     setInfoVal('');
-    setType('');
+    setType(GITHUB_PROVIDER);
     setState(0);
   }
 
@@ -82,25 +88,25 @@ export default function Profiles() {
     // 0 - new form
     if (formState === 0) {
       const newProvider = {
-        provider: typeSelected,
+        provider: parseInt(typeSelected),
         name: name,
         info: infoVal
       }
-      // console.log(newProvider);
       const response = await createProfile(newProvider);
-      console.log(response);
-      // check to see if we got a 400
+      const newId = response.data.id; // server returns us id of newly created provider
+
+      setProfiles([...profiles, {...newProvider, id: newId}])
 
     } else {
 
       const updateProvider = {
         id: profiles[currentProfile].id,
-        provider: typeSelected,
+        provider: parseInt(typeSelected),
         name: name,
         info: infoVal
       }
       const response = await updateProfile(updateProvider);
-      console.log(response);
+      setProfiles([...profiles.filter(profile => profile.id != updateProvider.id), updateProvider])
 
     }
   }
