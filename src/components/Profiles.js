@@ -86,7 +86,12 @@ export default function Profiles() {
     e.preventDefault();
 
     // 0 - new form
-    if (formState === 0) {
+    if (!checkProfile()) {
+      // send alert
+      alert("hello")
+      return;
+    }
+    else if (formState === 0) {
       const newProvider = {
         provider: parseInt(typeSelected),
         name: name,
@@ -117,6 +122,19 @@ export default function Profiles() {
 
     const response = await deleteProfile(profiles[currentProfile].id);
     setProfiles(profiles.filter(profile => profile.id != profiles[currentProfile].id))
+  }
+
+  const checkProfile =  () => {
+    console.log(name)
+    console.log(infoVal)
+    if (name === "") {
+      return false
+    }
+    else if (infoVal === "") {
+      return false
+    }
+    return true;
+
   }
 
   return(
@@ -202,15 +220,15 @@ export default function Profiles() {
               </div>
             </div>
 
-            <button onClick={submitProfile} className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+            <button onClick={submitProfile} className="mx-2 bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
                 <span className="mr-2">{formState ? <p>Update</p> : <p>Add</p>}</span>
             </button>
 
-            <button onClick={newProfile} className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+            <button onClick={newProfile} className="mx-2 bg-white text-gray-800 font-bold rounded border-b-2 border-yellow-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
                 <span className="mr-2">Clear</span>
             </button>
 
-            <button onClick={removeProfile} className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+            <button onClick={removeProfile} className="mx-2 bg-white text-gray-800 font-bold rounded border-b-2 border-red-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
                 <span className="mr-2">Delete</span>
             </button>
 
