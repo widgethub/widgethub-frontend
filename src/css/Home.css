@@ -25,16 +25,8 @@
 }
 
 .copybtn, .generatebtn {
-  float: right;
-  margin-top: -40px;
-}
-
-.copybtn:hover, .generatebtn:hover {
-  margin-top: -43px;
-}
-
-.copybtn, .copybtn:hover {
-  margin-right: 175px;
+  /* float: right; */
+  /* margin-top: -40px; */
 }
 
 input[type='number']::-webkit-inner-spin-button,

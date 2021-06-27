@@ -32,16 +32,14 @@ export default function Profiles() {
   // Update existing profiles - 1
   const [currentProfile, setCurrentProfile] = useState(-1)
 
-  useEffect(async () => {
-    // push user to home page if not logged in
-    if (!getToken()) {
-      return <Login setToken={saveToken} />
+  useEffect(() => {
+
+    async function fetchData() {
+      /* query for profiles */
+      const response = await getProfiles(); 
+      setProfiles(response.data.providers);
     }
-
-    /* query for profiles */
-    const response = await getProfiles(); 
-    setProfiles(response.data.providers);
-
+    fetchData()
   }, []);
 
   const types = [
