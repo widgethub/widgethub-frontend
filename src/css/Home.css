@@ -7,7 +7,7 @@
 }
 
 .configurator {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 
 .leftbox{
@@ -24,12 +24,17 @@
   height: 40vh;
 }
 
-.copybtn {
-  margin-bottom: 10px;
+.copybtn, .generatebtn {
+  float: right;
+  margin-top: -40px;
 }
 
-.copybtn:hover {
-  margin-bottom: 8px;
+.copybtn:hover, .generatebtn:hover {
+  margin-top: -43px;
+}
+
+.copybtn, .copybtn:hover {
+  margin-right: 175px;
 }
 
 input[type='number']::-webkit-inner-spin-button,

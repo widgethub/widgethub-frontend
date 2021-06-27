@@ -174,6 +174,9 @@ export default function Home() {
         <div className="content grid grid-cols-2 justify-items-center"> 
             <div className="leftbox box">
                 <div className="editor">
+                    <button className="generatebtn px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
+                        Generate Widget
+                    </button>
                     <button className="copybtn px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
                         Copy Code
                     </button>
