@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../css/Home.css';
 
-
 import { getProfiles } from '../services/profile.service';
-import { getToken, saveToken } from '../services/auth.service';
-
 
 export default function Home() {
     const [bgtype, setBGType] = useState(0);
@@ -30,25 +27,23 @@ export default function Home() {
 
     const [typeSelected, setType] = useState(GITHUB_PROVIDER);
     const [name, setName] = useState('');
-    const [first, setFirst] = useState('');
-    const [last, setLast] = useState('');
     const [link, setLink] = useState('github.com/');
     const [infoVal, setInfoVal] = useState('');
     
     const background = [
-        {name: "Gradient", value: "github.com/"},
-        {name: "Solid", value: "facebook.com/"}
+        {name: "Gradient", value: "gradient"},
+        {name: "Solid", value: "solid"}
     ];
 
     const types = [
-        {type: "Gray", link: "github.com/"},
-        {type: "Red", link: "facebook.com/"},
-        {type: "Yellow", link: "instagram.com/"},
-        {type: "Green", link: "instagram.com/"},
-        {type: "Blue", link: "instagram.com/"},
-        {type: "Indigo", link: "instagram.com/"},
-        {type: "Purple", link: "linkedin.com/in/"},
-        {type: "Pink", link: "linkedin.com/in/"}
+        {name: "Gray", value: "gray"},
+        {name: "Red", value: "red"},
+        {name: "Yellow", value: "yellow"},
+        {name: "Green", value: "green"},
+        {name: "Blue", value: "blue"},
+        {name: "Indigo", value: "indigo"},
+        {name: "Purple", value: "purple"},
+        {name: "Pink", value: "pink"}
     ];
 
     const [code, setCode] = useState('');
@@ -157,11 +152,11 @@ export default function Home() {
             id: "${profiles[currentProfile]}",
             theme: 
             {
-              background1: "${types[bg1color].type.toLowerCase()}-${bg1shade}",
-              background2: "${types[bg2color].type.toLowerCase()}-${bg2shade}",
-              titleColor: "${types[titlecolor].type.toLowerCase()}-${titleshade}",
-              titleHoverColor: "${types[titlecolorhover].type.toLowerCase()}-${titleshadehover}",
-              descriptionColor: "${types[textcolor].type.toLowerCase()}-${textshade}"
+              background1: "${types[bg1color].name.toLowerCase()}-${bg1shade}",
+              background2: "${types[bg2color].name.toLowerCase()}-${bg2shade}",
+              titleColor: "${types[titlecolor].name.toLowerCase()}-${titleshade}",
+              titleHoverColor: "${types[titlecolorhover].name.toLowerCase()}-${titleshadehover}",
+              descriptionColor: "${types[textcolor].name.toLowerCase()}-${textshade}"
             },
             edges: true,
             customMessage: "${name}",
@@ -201,11 +196,11 @@ export default function Home() {
             id: "${profiles[currentProfile]}",
             theme: 
             {
-              background1: "${types[bg1color].type.toLowerCase()}-${bg1shade}",
-              background2: "${types[bg2color].type.toLowerCase()}-${bg2shade}",
-              titleColor: "${types[titlecolor].type.toLowerCase()}-${titleshade}",
-              titleHoverColor: "${types[titlecolorhover].type.toLowerCase()}-${titleshadehover}",
-              descriptionColor: "${types[textcolor].type.toLowerCase()}-${textshade}"
+              background1: "${types[bg1color].name.toLowerCase()}-${bg1shade}",
+              background2: "${types[bg2color].name.toLowerCase()}-${bg2shade}",
+              titleColor: "${types[titlecolor].name.toLowerCase()}-${titleshade}",
+              titleHoverColor: "${types[titlecolorhover].name.toLowerCase()}-${titleshadehover}",
+              descriptionColor: "${types[textcolor].name.toLowerCase()}-${textshade}"
             },
             edges: true,
             customMessage: "${name}",

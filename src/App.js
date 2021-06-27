@@ -1,9 +1,8 @@
 import React from "react";
 import './css/App.css';
 import {
-  BrowserRouter as Router,
   Switch,
-  Route,
+  Route
 } from "react-router-dom";
 import Layout from './layouts/layouts';
 import LayoutLogin from './layouts/layoutlogin'
