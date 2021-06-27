@@ -19,6 +19,19 @@
     margin: 30px;
 }
 
+.editorbox {
+  resize: none;
+  height: 40vh;
+}
+
+.copybtn {
+  margin-bottom: 10px;
+}
+
+.copybtn:hover {
+  margin-bottom: 8px;
+}
+
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;

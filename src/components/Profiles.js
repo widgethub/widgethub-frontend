@@ -207,7 +207,7 @@ export default function Profiles() {
             </button>
 
             <button onClick={newProfile} className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
-                <span className="mr-2">Clear</span>
+                <span className="mr-2">Close</span>
             </button>
 
             <button onClick={removeProfile} className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
