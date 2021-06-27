@@ -113,12 +113,14 @@ export default function Home() {
       /* query for profiles */
       const response = await getProfiles(); 
       setProfiles(response.data.providers);
+    
+      // document.getElementById('widget-preview').src = "data:text/html;charset=utf-8," + escape(Github());
+      document.getElementById('widget-preview').src = "data:text/html;charset=utf-8," + escape('<div></div>')+escape(Github());
 
     }, []);
 
 
-
-    const Devpost = () => { return ` <script id="widgethubscript">
+    const Devpost = () => { return `<script id="widgethubscript">
     
     (function(r1,r2){
       console.log(r1,r2);
@@ -127,7 +129,8 @@ export default function Home() {
           if (doc.getElementById(id)) {return;}
           
           js = doc.createElement(tag); js.id = id;
-          js.src = 'https://widget.discoursevr.space/cdn/devpost/devpost.js';
+          js.src = 'https://api.widgethub.space/cdn/devpost/devpost.js';
+
           //js.src = './devpost.js';
           js.type = "text/javascript";
           fjs.parentNode.insertBefore(js, fjs);
@@ -171,7 +174,7 @@ export default function Home() {
           if (doc.getElementById(id)) {return;}
           
           js = doc.createElement(tag); js.id = id;
-          js.src = 'https://widget.discoursevr.space/cdn/github/github.js';
+          js.src = 'https://api.widgethub.space/cdn/github/github.js';
           //js.src = './github.js';
           js.type = "text/javascript";
           fjs.parentNode.insertBefore(js, fjs);
@@ -225,6 +228,7 @@ export default function Home() {
                         class="editorbox font-mono bg-gray-800 w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 text-gray-50 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" 
                         required value={code} spellcheck="false"></textarea>
                     </div>
+                    <iframe id="widget-preview"></iframe>
                 </div>
             </div>
             <div>
