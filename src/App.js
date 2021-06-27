@@ -5,7 +5,8 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import  Layout  from './layouts/layouts';
+import Layout from './layouts/layouts';
+import LayoutLogin from './layouts/layoutlogin'
 import { Home, Profiles, Login, SignUp } from './components/components';
 
 
@@ -16,8 +17,8 @@ export default function App() {
           <Switch>
             <RouteWrapper exact path="/" component={Home} layout={Layout}></RouteWrapper>
             <RouteWrapper exact path="/profiles" component={Profiles} layout={Layout}></RouteWrapper>
-            <Route exact path="/login" component={Login}></Route>
-            <Route exact path="/signup" component={SignUp}></Route>
+            <RouteWrapper exact path="/login" component={Login} layout={LayoutLogin}></RouteWrapper>
+            <RouteWrapper exact path="/signup" component={SignUp} layout={LayoutLogin}></RouteWrapper>
           </Switch>
         </div>
     </div>
