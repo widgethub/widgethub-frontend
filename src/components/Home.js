@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../css/Home.css';
 
-
 import { getProfiles } from '../services/profile.service';
-import { getToken, saveToken } from '../services/auth.service';
-
 
 export default function Home() {
     const [bgtype, setBGType] = useState(0);
@@ -30,25 +27,23 @@ export default function Home() {
 
     const [typeSelected, setType] = useState(GITHUB_PROVIDER);
     const [name, setName] = useState('');
-    const [first, setFirst] = useState('');
-    const [last, setLast] = useState('');
     const [link, setLink] = useState('github.com/');
     const [infoVal, setInfoVal] = useState('');
     
     const background = [
-        {name: "Gradient", value: "github.com/"},
-        {name: "Solid", value: "facebook.com/"}
+        {name: "Gradient", value: "gradient"},
+        {name: "Solid", value: "solid"}
     ];
 
     const types = [
-        {type: "Gray", link: "github.com/"},
-        {type: "Red", link: "facebook.com/"},
-        {type: "Yellow", link: "instagram.com/"},
-        {type: "Green", link: "instagram.com/"},
-        {type: "Blue", link: "instagram.com/"},
-        {type: "Indigo", link: "instagram.com/"},
-        {type: "Purple", link: "linkedin.com/in/"},
-        {type: "Pink", link: "linkedin.com/in/"}
+        {name: "Gray", value: "gray"},
+        {name: "Red", value: "red"},
+        {name: "Yellow", value: "yellow"},
+        {name: "Green", value: "green"},
+        {name: "Blue", value: "blue"},
+        {name: "Indigo", value: "indigo"},
+        {name: "Purple", value: "purple"},
+        {name: "Pink", value: "pink"}
     ];
 
     const [code, setCode] = useState('');
@@ -150,11 +145,11 @@ export default function Home() {
             id: "${profiles[currentProfile]}",
             theme: 
             {
-              background1: "${types[bg1color].type.toLowerCase()}-${bg1shade}",
-              background2: "${types[bg2color].type.toLowerCase()}-${bg2shade}",
-              titleColor: "${types[titlecolor].type.toLowerCase()}-${titleshade}",
-              titleHoverColor: "${types[titlecolorhover].type.toLowerCase()}-${titleshadehover}",
-              descriptionColor: "${types[textcolor].type.toLowerCase()}-${textshade}"
+              background1: "${types[bg1color].name.toLowerCase()}-${bg1shade}",
+              background2: "${types[bg2color].name.toLowerCase()}-${bg2shade}",
+              titleColor: "${types[titlecolor].name.toLowerCase()}-${titleshade}",
+              titleHoverColor: "${types[titlecolorhover].name.toLowerCase()}-${titleshadehover}",
+              descriptionColor: "${types[textcolor].name.toLowerCase()}-${textshade}"
             },
             edges: true,
             customMessage: "${name}",
@@ -194,11 +189,11 @@ export default function Home() {
             id: "fairnightzz",
             theme: 
             {
-              background1: "${types[bg1color].type.toLowerCase()}-${bg1shade}",
-              background2: "${types[bg2color].type.toLowerCase()}-${bg2shade}",
-              titleColor: "${types[titlecolor].type.toLowerCase()}-${titleshade}",
-              titleHoverColor: "${types[titlecolorhover].type.toLowerCase()}-${titleshadehover}",
-              descriptionColor: "${types[textcolor].type.toLowerCase()}-${textshade}"
+              background1: "${types[bg1color].name.toLowerCase()}-${bg1shade}",
+              background2: "${types[bg2color].name.toLowerCase()}-${bg2shade}",
+              titleColor: "${types[titlecolor].name.toLowerCase()}-${titleshade}",
+              titleHoverColor: "${types[titlecolorhover].name.toLowerCase()}-${titleshadehover}",
+              descriptionColor: "${types[textcolor].name.toLowerCase()}-${textshade}"
             },
             edges: true,
             customMessage: "${name}",
@@ -286,8 +281,8 @@ export default function Home() {
                                 <div className="relative">
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setBG1Color(e.target.value)}} value={bg1color}>
-                                    {types.map(function(type, i) {
-                                        return <option key={i}>{type.type}</option>
+                                    {types.map(function(name, i) {
+                                        return <option key={i}>{name.name}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -319,8 +314,8 @@ export default function Home() {
                                 <div className="relative">
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setBG2Color(e.target.value)}} value={bg2color}>
-                                    {types.map(function(type, i) {
-                                        return <option key={i}>{type.type}</option>
+                                    {types.map(function(name, i) {
+                                        return <option key={i}>{name.name}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -352,8 +347,8 @@ export default function Home() {
                                 <div className="relative">
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setTitleColor(e.target.value)}} value={titlecolor}>
-                                    {types.map(function(type, i) {
-                                        return <option key={i}>{type.type}</option>
+                                    {types.map(function(name, i) {
+                                        return <option key={i}>{name.name}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -385,8 +380,8 @@ export default function Home() {
                                 <div className="relative">
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setTitleColorHover(e.target.value)}} value={titlecolorhover}>
-                                    {types.map(function(type, i) {
-                                        return <option key={i}>{type.type}</option>
+                                    {types.map(function(name, i) {
+                                        return <option key={i}>{name.name}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -418,8 +413,8 @@ export default function Home() {
                                 <div className="relative">
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setTextColor(e.target.value)}} value={textcolor}>
-                                    {types.map(function(type, i) {
-                                        return <option key={i}>{type.type}</option>
+                                    {types.map(function(name, i) {
+                                        return <option key={i}>{name.name}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">

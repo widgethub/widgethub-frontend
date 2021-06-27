@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../css/Profiles.css';
 import Swal from 'sweetalert2'
-import Login from './Login/Login';
-import { getToken, saveToken } from '../services/auth.service';
 // import { getProfiles } from '../services/profile.service';
 import { createProfile, updateProfile, deleteProfile, getProfiles } from '../services/profile.service';
 
@@ -115,7 +113,7 @@ export default function Profiles() {
       }
 
       const response = await updateProfile(updateProvider);
-      setProfiles([...profiles.filter(profile => profile.id != updateProvider.id), updateProvider])
+      setProfiles([...profiles.filter(profile => profile.id !== updateProvider.id), updateProvider])
 
     }
   }
@@ -124,7 +122,7 @@ export default function Profiles() {
     e.preventDefault();
 
     const response = await deleteProfile(profiles[currentProfile].id);
-    setProfiles(profiles.filter(profile => profile.id != profiles[currentProfile].id))
+    setProfiles(profiles.filter(profile => profile.id !== profiles[currentProfile].id))
   }
 
   const checkProfile =  () => {

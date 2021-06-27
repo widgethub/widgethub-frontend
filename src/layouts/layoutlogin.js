@@ -1,15 +1,6 @@
 import React, { useState } from 'react';
 import '../css/Login.css';
 
-import Swal from 'sweetalert2'
-import { saveToken } from '../services/auth.service';
-import axios from 'axios';
-import { API_URL } from '../config'
-import {
-    Link,
-    useHistory
-} from "react-router-dom";
-
 import Logo from '../assets/logo.png'
 import Whale from '../assets/whale.jpg'
 
@@ -19,7 +10,7 @@ export default function LayoutLogin({children}) {
 
     function updateEasterEgg(){
       setWhaleCumCounter(whalecumcounter + 1)
-      if(whalecumcounter == 5) {
+      if(whalecumcounter === 5) {
         setWhaleCum(true);
         setWhaleCumCounter(0);
       }

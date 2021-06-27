@@ -10,7 +10,6 @@ import {
     useHistory
 } from "react-router-dom";
 
-import Logo from '../../assets/logo.png'
 
 export default function SignUp() {
     const [usernamered, setUsernameRed] = useState(false);
