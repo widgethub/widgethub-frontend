@@ -6,12 +6,17 @@
     width: 100%;
 }
 
+.configurator {
+  margin-top: 30px;
+}
+
 .leftbox{
     width: 100%;
 }
 
 .editor {
     width: 100%;
+    margin: 30px;
 }
 
 input[type='number']::-webkit-inner-spin-button,

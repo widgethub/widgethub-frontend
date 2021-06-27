@@ -120,10 +120,10 @@ export default function Profiles() {
   }
 
   return(
-    <div className="grid grid-cols-2 gap-4 justify-items-center">
+    <div className="content grid grid-cols-2 gap-4 justify-items-center">
 
-      <div className="w-full max-w-lg mt-6">
-        <div className="bg-white shadow-xl rounded-lg mx-3 mt-6">
+      <div className="w-full max-w-lg">
+        <div className="selector bg-white shadow-xl rounded-lg mx-3 mt-6">
           <ul className="divide-y divide-gray-300">
             {profiles.map(function(profile, i) {
               return (
@@ -137,85 +137,84 @@ export default function Profiles() {
       </div>
 
       <div>
-        <div className="grid bg-white shadow-xl rounded-lg mt-6 place-items-center">
-        <form className="w-full max-w-md p-6">
-          <p className="text-4xl">Profile</p>
+        <div className="editor grid bg-white shadow-xl rounded-lg mt-6 place-items-center">
+          <form className="w-full max-w-md p-6">
+            <p className="text-4xl">Profile</p>
 
-          <div className="flex flex-wrap -mx-3 mb-6 mt-6">
-            <div className="w-full px-3">
-              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                Title
-              </label>
-              <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              id="grid-title" type="string" placeholder="Enter the title of your profile"
-              onChange={e => setName(e.target.value)} value={name}/>
-              <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
+            <div className="flex flex-wrap -mx-3 mb-6 mt-6">
+              <div className="w-full px-3">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                  Title
+                </label>
+                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                id="grid-title" type="string" placeholder="Enter the title of your profile"
+                onChange={e => setName(e.target.value)} value={name}/>
+                <p className="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
+              </div>
             </div>
-          </div>
 
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full px-3 mb-6 md:mb-0">
-              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                Display Name
-              </label>
-              <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-              id="grid-first-name" type="text" placeholder="fairnightzz"
-              onChange={e => setFirst(e.target.value)} value={first}/>
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full px-3 mb-6 md:mb-0">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                  Display Name
+                </label>
+                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
+                id="grid-first-name" type="text" placeholder="fairnightzz"
+                onChange={e => setFirst(e.target.value)} value={first}/>
+              </div>
             </div>
-          </div>
 
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full px-3 mb-6 md:mb-0">
-              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                Type
-              </label>
-              <div className="relative">
-                <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                id="grid-type" onChange={e => (
-                  changeTypeLink(e.target.value)
-                  )} value={typeSelected}>
-                  {types.map(function(type, i) {
-                    return <option key={i}>{type.type}</option>
-                  })}
-                </select>
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                  <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full px-3 mb-6 md:mb-0">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                  Type
+                </label>
+                <div className="relative">
+                  <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                  id="grid-type" onChange={e => (
+                    changeTypeLink(e.target.value)
+                    )} value={typeSelected}>
+                    {types.map(function(type, i) {
+                      return <option key={i}>{type.type}</option>
+                    })}
+                  </select>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                Start:
-              </label>
-                <p className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">{link}</p>
+            <div className="flex flex-wrap -mx-3 mb-6">
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                  Start:
+                </label>
+                  <p className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">{link}</p>
+              </div>
+              <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                    Link
+                </label>
+                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                id="grid-link" type="text" placeholder="To Profile"
+                onChange={e => setInfoVal(e.target.value)} value={infoVal}/>
+              </div>
             </div>
-            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                  Link
-              </label>
-              <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-              id="grid-link" type="text" placeholder="To Profile"
-              onChange={e => setInfoVal(e.target.value)} value={infoVal}/>
-            </div>
-          </div>
 
-          <button onClick={submitProfile} className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
-              <span className="mr-2">{formState ? <p>Update</p> : <p>Add</p>}</span>
-          </button>
+            <button onClick={submitProfile} className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+                <span className="mr-2">{formState ? <p>Update</p> : <p>Add</p>}</span>
+            </button>
 
-          <button onClick={newProfile} className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
-              <span className="mr-2">Clear</span>
-          </button>
+            <button onClick={newProfile} className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+                <span className="mr-2">Clear</span>
+            </button>
 
-          <button onClick={removeProfile} className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
-              <span className="mr-2">Delete</span>
-          </button>
+            <button onClick={removeProfile} className="bg-white text-gray-800 font-bold rounded border-b-2 border-green-500 hover:border-green-600 hover:bg-green-500 hover:text-white shadow-md py-2 px-6 inline-flex items-center">
+                <span className="mr-2">Delete</span>
+            </button>
 
-        </form>
-
+          </form>
         </div>
       </div>
     </div>

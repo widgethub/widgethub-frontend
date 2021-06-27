@@ -117,7 +117,7 @@ export default function Home() {
                 </div>
             </div>
             <div>
-                <div className="grid bg-white shadow-xl rounded-lg mt-6 place-items-center">
+                <div className="configurator grid bg-white shadow-xl rounded-lg mt-6 place-items-center">
                     <form className="w-full max-w-md p-6">
                         <p className="text-4xl">Configure</p>
                         <div className="flex flex-wrap -mx-3 mb-6 mt-6">
