@@ -32,9 +32,9 @@ async function loginUser(credentials) {
         } else if(error === 418) {
         Swal.fire({
           title: 'Error!',
-          text: 'Water water water',
+          text: 'Water water water!',
           icon: 'error',
-          confirmButtonText: 'loo loo loo'
+          confirmButtonText: 'loo loo loo!'
         })
  
       } else {
