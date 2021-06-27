@@ -22,8 +22,7 @@ export default function Home() {
 
     const GITHUB_PROVIDER =    1;
     const DEVPOST_PROVIDER =  2;
-    const INSTAGRAM_PROVIDER = 3;
-    const LINKEDIN_PROVIDER =  4;
+    const GITHUBSTATS_PROVIDER = 3;
 
     const [typeSelected, setType] = useState(GITHUB_PROVIDER);
     const [name, setName] = useState('');
@@ -106,6 +105,11 @@ export default function Home() {
         setCode(Devpost())
         document.getElementById('widget-preview').src = "about:blank";
         document.getElementById('widget-preview').src = "data:text/html;charset=utf-8," + escape('<div></div>')+escape(Devpost());
+      }
+      else if (profiles[currentProfile].provider === GITHUBSTATS_PROVIDER) {
+        setCode(GithubStats())
+        document.getElementById('widget-preview').src = "about:blank";
+        document.getElementById('widget-preview').src = "data:text/html;charset=utf-8," + escape('<div></div>')+escape(GithubStats());
       }
     }
  
@@ -215,6 +219,50 @@ export default function Home() {
       
     </script>`
   }
+    const GithubStats = () => { return ` <script id="widgethubscript">
+    
+    (function(r1,r2){
+      console.log(r1,r2);
+      (function(doc, tag, id){
+          var js,fjs  = doc.getElementById("widgethubscript");
+          if (doc.getElementById(id)) {return;}
+          
+          js = doc.createElement(tag); js.id = id;
+          js.src = 'https://api.widgethub.space/cdn/github/github-projects.js';
+          //js.src = './github.js';
+          js.type = "text/javascript";
+          fjs.parentNode.insertBefore(js, fjs);
+          ds = doc.createElement('div'); ds.id = r1;
+          fjs.parentNode.insertBefore(ds, fjs);
+  
+        }(document, 'script', r2));
+
+        
+        window.onload = function() {
+          widget.setOptions( {
+            id: "${profiles[currentProfile]}",
+            theme: 
+            {
+              background1: "${types[bg1color].name.toLowerCase()}-${bg1shade}",
+              background2: "${types[bg2color].name.toLowerCase()}-${bg2shade}",
+              titleColor: "${types[titlecolor].name.toLowerCase()}-${titleshade}",
+              titleHoverColor: "${types[titlecolorhover].name.toLowerCase()}-${titleshadehover}",
+              descriptionColor: "${types[textcolor].name.toLowerCase()}-${textshade}"
+            },
+            edges: true,
+            customMessage: "${name}",
+            div: r1
+          })
+
+          widget.render();
+        }
+  
+
+    }(Math.random().toString(36).substring(7), Math.random().toString(36).substring(7)))
+      
+    </script>`
+  }
+
 
     return(
         <div className="content grid grid-cols-2 justify-items-center"> 

@@ -10,7 +10,6 @@ export default function Profiles() {
   const GITHUB_PROVIDER =    1;
   const DEVPOST_PROVIDER =  2;
   const GITHUBSTATS_PROVIDER = 3;
-  const LINKEDIN_PROVIDER =  4;
 
   const [formState, setState] = useState(0);
   // New form - 0
@@ -43,8 +42,7 @@ export default function Profiles() {
   const types = [
     {type: GITHUB_PROVIDER, name: "GitHub", link: "github.com/"},
     {type: DEVPOST_PROVIDER, name: "Devpost", link: "devpost.com/"},
-    {type: GITHUBSTATS_PROVIDER, name: "Github", link: "github.com/"},
-    {type: LINKEDIN_PROVIDER, name: "LinkedIn", link: "linkedin.com/in/"}
+    {type: GITHUBSTATS_PROVIDER, name: "Github", link: "github.com/"}
   ];
 
   const changeTypeLink = (type) => {
