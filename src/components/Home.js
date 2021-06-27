@@ -226,7 +226,7 @@ export default function Home() {
                         class="editorbox font-mono bg-gray-800 w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 text-gray-50 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" 
                         required value={code} spellcheck="false"></textarea>
                     </div>
-                    <iframe id="widget-preview"></iframe>
+                    <iframe id="widget-preview" height="400" width="200"></iframe>
                 </div>
             </div>
             <div>
