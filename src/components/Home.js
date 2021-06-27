@@ -6,28 +6,65 @@ import Login from './Login/Login';
 export default function Home() {
     const [formState, setState] = useState(0);
     // New form - 0
-    const [typeSelected, setType] = useState('Github');
-    const [title, setTitle] = useState();
-    const [first, setFirst] = useState();
-    const [last, setLast] = useState();
-    const [link, setLink] = useState('github.com/');
-    const [linkVal, setLinkVal] = useState();
+    const [bg1shade, setBG1Shade] = useState(0);
+    const [bg2shade, setBG2Shade] = useState(0);
+    const [titleshade, setTitleShade] = useState(0);
+    const [titleshadehover, setTitleShadeHover] = useState(0);
+    const [textshade, setTextShade] = useState(0);
 
     const types = [
         {type: "Github", link: "github.com/"},
         {type: "Facebook", link: "facebook.com/"},
         {type: "Instagram", link: "instagram.com/"},
         {type: "Linkedin", link: "linkedin.com/in/"}
-      ];
+    ];
 
-      const changeTypeLink = (type) => {
-        setType(type)
-        for (var prop in types) {
-              if (types[prop].type === type){
-                setLink(types[prop].link)
-              }
-          }
-      }
+    const changeTypeLink = (type) => {
+    setType(type)
+    for (var prop in types) {
+            if (types[prop].type === type){
+            setLink(types[prop].link)
+            }
+        }
+    }
+
+    function decrement(e) {
+        const btn = e.target.parentNode.parentElement.querySelector(
+          'button[data-action="decrement"]'
+        );
+        const target = btn.nextElementSibling;
+        let value = Number(target.value);
+        if(value == 50 || value == 100) value -= 50;
+        else if(value != 0) value -= 100;
+        target.value = value;
+    }
+
+    function increment(e) {
+    const btn = e.target.parentNode.parentElement.querySelector(
+        'button[data-action="decrement"]'
+    );
+    const target = btn.nextElementSibling;
+    let value = Number(target.value);
+    if(value == 0 || value == 50) value += 50;
+    else if(value != 900) value += 100;
+    target.value = value;
+    }
+
+    const decrementButtons = document.querySelectorAll(
+    `button[data-action="decrement"]`
+    );
+
+    const incrementButtons = document.querySelectorAll(
+    `button[data-action="increment"]`
+    );
+
+    decrementButtons.forEach(btn => {
+    btn.addEventListener("click", decrement);
+    });
+
+    incrementButtons.forEach(btn => {
+    btn.addEventListener("click", increment);
+    });
 
     return(
         <div className="content grid grid-cols-2 justify-items-center"> 
@@ -63,7 +100,7 @@ export default function Home() {
             </div>
             <div className="rightbox box">
                 <div className="grid bg-white shadow-xl rounded-lg mt-6 place-items-center">
-                    <form className="w-5/6 max-w-md p-6">
+                    <form className="w-full max-w-md p-6">
                         <p className="text-4xl">Configure</p>
                         <div className="flex flex-wrap -mx-3 mb-6 mt-6">
                             <div className="w-full px-3">
@@ -88,34 +125,200 @@ export default function Home() {
                         </div>
 
                         <div className="flex flex-wrap -mx-3 mb-6 mt-6">
-                            <div className="w-full px-3">              
+                            <div className="w-full px-3">
                             <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                                Color 1
+                                Background
                             </label>
-                            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" 
-                            id="grid-first-name" type="text" placeholder="F9F9F9"
-                            onChange={e => setFirst(e.target.value)} value={first}/>
+                            
+                            <div className="relative">
+                                <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                                id="grid-type" onChange={e => (
+                                changeTypeLink(e.target.value)
+                                )} value={typeSelected}>
+                                {types.map(function(type, i) {
+                                    return <option key={i}>{type.type}</option>
+                                })}
+                                </select>
+                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                </div>
+                            </div>
                             </div>
                         </div>
 
                         <div className="flex flex-wrap -mx-3 mb-6">
                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                                Color 2
-                            </label>
-                                <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                            id="grid-link" type="text" placeholder="#696969"
-                            onChange={e => setLinkVal(e.target.value)} value={linkVal}/>
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                    Background 1 Color
+                                </label>
+                                <div className="relative">
+                                    <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                                    id="grid-type" onChange={e => (
+                                    changeTypeLink(e.target.value)
+                                    )} value={typeSelected}>
+                                    {types.map(function(type, i) {
+                                        return <option key={i}>{type.type}</option>
+                                    })}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                    </div>
+                                </div>
                             </div>
                             <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
-                                Accent Color
-                            </label>
-                            <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                            id="grid-link" type="text" placeholder="#696969"
-                            onChange={e => setLinkVal(e.target.value)} value={linkVal}/>
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                    Background 1 Shade
+                                </label>
+                                <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    <button onClick={decrement} class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                    <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="number" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
+                                    <button onClick={increment} class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                                    <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
                             </div>
-                
+                        </div>
+
+                        <div className="flex flex-wrap -mx-3 mb-6">
+                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                    Background 2 Color
+                                </label>
+                                <div className="relative">
+                                    <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                                    id="grid-type" onChange={e => (
+                                    changeTypeLink(e.target.value)
+                                    )} value={typeSelected}>
+                                    {types.map(function(type, i) {
+                                        return <option key={i}>{type.type}</option>
+                                    })}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                    Background 2 Shade
+                                </label>
+                                <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    <button onClick={decrement} class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                    <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="number" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
+                                    <button onClick={increment} class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                                    <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-wrap -mx-3 mb-6">
+                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                    Title Color
+                                </label>
+                                <div className="relative">
+                                    <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                                    id="grid-type" onChange={e => (
+                                    changeTypeLink(e.target.value)
+                                    )} value={typeSelected}>
+                                    {types.map(function(type, i) {
+                                        return <option key={i}>{type.type}</option>
+                                    })}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                    Title Shade
+                                </label>
+                                <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    <button onClick={decrement} class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                    <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="number" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
+                                    <button onClick={increment} class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                                    <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-wrap -mx-3 mb-6">
+                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                    Title Color (Hover)
+                                </label>
+                                <div className="relative">
+                                    <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                                    id="grid-type" onChange={e => (
+                                    changeTypeLink(e.target.value)
+                                    )} value={typeSelected}>
+                                    {types.map(function(type, i) {
+                                        return <option key={i}>{type.type}</option>
+                                    })}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                    Title Shade (Hover)
+                                </label>
+                                <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    <button onClick={decrement} class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                    <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="number" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
+                                    <button onClick={increment} class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                                    <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex flex-wrap -mx-3 mb-6">
+                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                    Text Color
+                                </label>
+                                <div className="relative">
+                                    <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
+                                    id="grid-type" onChange={e => (
+                                    changeTypeLink(e.target.value)
+                                    )} value={typeSelected}>
+                                    {types.map(function(type, i) {
+                                        return <option key={i}>{type.type}</option>
+                                    })}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" >
+                                    Text Shade
+                                </label>
+                                <div class="flex flex-row h-10 w-full rounded-lg relative bg-transparent mt-1">
+                                    <button onClick={decrement} class=" bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-l cursor-pointer outline-none">
+                                    <span class="m-auto text-2xl font-thin">−</span>
+                                    </button>
+                                    <input type="number" class="outline-none focus:outline-none text-center w-full bg-gray-300 font-semibold text-md hover:text-black focus:text-black  md:text-basecursor-default flex items-center text-gray-700  outline-none" name="custom-input-number" value="0"></input>
+                                    <button onClick={increment} class="bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 h-full w-20 rounded-r cursor-pointer">
+                                    <span class="m-auto text-2xl font-thin">+</span>
+                                    </button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>       
