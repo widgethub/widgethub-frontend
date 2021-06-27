@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../css/Login.css';
 
+import Swal from 'sweetalert2'
 import { saveToken } from '../../services/auth.service';
 import axios from 'axios';
 import { API_URL } from '../../config'
@@ -20,12 +21,30 @@ async function signupUser(credentials) {
         return res.data.accessToken
       })
       .catch(error => {
-        if(error == 418) {
-        alert("Username Taken");
-        } else if(error == 418) {
-        alert("Daniel is dead (on the inside only, sadly)");
+        if(error === 418) {
+          Swal.fire({
+            title: 'Error!',
+            text: 'Username already taken!',
+            icon: 'error',
+            confirmButtonText: 'Cool, I will fix it'
+          })
+  
+        } else if(error === 418) {
+          Swal.fire({
+            title: 'Error!',
+            text: 'What do you call a snake with no legs',
+            icon: 'error',
+            confirmButtonText: '...'
+          })
+ 
         } else {
-        alert("Server Error");
+          Swal.fire({
+            title: 'Error!',
+            text: 'Either something happened on your end or it is us',
+            icon: 'error',
+            confirmButtonText: 'I see...'
+          })
+ 
         }
         return null
       })

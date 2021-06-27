@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../css/Login.css';
 
+import Swal from 'sweetalert2'
 import { saveToken } from '../../services/auth.service';
 import axios from 'axios';
 import { API_URL } from '../../config'
@@ -20,12 +21,29 @@ async function loginUser(credentials) {
       return res.data.accessToken
     })
     .catch(error => {
-      if(error == 401) {
-        alert("Wrong Username or Password");
-      } else if(error == 418) {
-        alert("Daniel is dead (on the inside only, sadly)");
+      if(error === 401) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Wrong username or password!',
+          icon: 'error',
+          confirmButtonText: 'Cool, I will fix it'
+        })
+  
+        } else if(error === 418) {
+        Swal.fire({
+          title: 'Error!',
+          text: 'Water water water',
+          icon: 'error',
+          confirmButtonText: 'loo loo loo'
+        })
+ 
       } else {
-        alert("Server Error");
+        Swal.fire({
+          title: 'Server Error!',
+          text: 'Some happened on our end, sorry',
+          icon: 'error',
+          confirmButtonText: 'Ok'
+        })
       }
       return null
     })

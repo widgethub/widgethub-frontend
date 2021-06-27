@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../css/Profiles.css';
-
+import Swal from 'sweetalert2'
 import Login from './Login/Login';
 import { getToken, saveToken } from '../services/auth.service';
 // import { getProfiles } from '../services/profile.service';
@@ -88,7 +88,12 @@ export default function Profiles() {
     // 0 - new form
     if (!checkProfile()) {
       // send alert
-      alert("hello")
+      Swal.fire({
+        title: 'Error!',
+        text: 'Fields are empty!',
+        icon: 'error',
+        confirmButtonText: 'I am gay'
+      })
       return;
     }
     else if (formState === 0) {
