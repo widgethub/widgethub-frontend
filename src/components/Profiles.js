@@ -45,10 +45,10 @@ export default function Profiles() {
   }, []);
 
   const types = [
-    {type: GITHUB_PROVIDER, link: "github.com/"},
-    {type: FACEBOOK_PROVIDER, link: "facebook.com/"},
-    {type: INSTAGRAM_PROVIDER, link: "instagram.com/"},
-    {type: LINKEDIN_PROVIDER, link: "linkedin.com/in/"}
+    {type: GITHUB_PROVIDER, name: "GitHub", link: "github.com/"},
+    {type: FACEBOOK_PROVIDER, name: "Facebook", link: "facebook.com/"},
+    {type: INSTAGRAM_PROVIDER, name: "Instagram", link: "instagram.com/"},
+    {type: LINKEDIN_PROVIDER, name: "LinkedIn", link: "linkedin.com/in/"}
   ];
 
   const changeTypeLink = (type) => {
@@ -92,7 +92,7 @@ export default function Profiles() {
         title: 'Error!',
         text: 'Fields are empty!',
         icon: 'error',
-        confirmButtonText: 'I am gay'
+        confirmButtonText: 'OK'
       })
       return;
     }
@@ -198,7 +198,7 @@ export default function Profiles() {
                     changeTypeLink(e.target.value)
                     )} value={typeSelected}>
                     {types.map(function(type, i) {
-                      return <option key={i}>{type.type}</option>
+                      return <option key={i}>{name.name}</option>
                     })}
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
