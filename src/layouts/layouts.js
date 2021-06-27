@@ -31,17 +31,17 @@ export default function Layout({children}) {
       <header>
         <img className="headelement logo" src={Logo} alt="logo"></img>
         <div className="headelement navbtn text-sm ">
-          <div className="mb-2">
-            <button onClick={removeToken} className="px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
-              Logout
+          <div className="mb-1">
+            <button onClick={removeToken} className="text-gray-400 text-lg hover:text-indigo-600 transition-color duration-200">
+              logout
             </button>
           </div>
         </div>
         <div className="headelement navbtn text-sm ">
           <div className="mb-2">
             <Link to="/profiles">
-              <button className="px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
-                Profiles
+              <button className="text-gray-400 text-lg hover:text-indigo-600 transition-color duration-200">
+                profiles
               </button>
             </Link>
           </div>
@@ -49,8 +49,8 @@ export default function Layout({children}) {
         <div className="headelement navbtn text-sm ">
           <div className="mb-2">
             <Link to="/">
-              <button className="px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
-                Home
+              <button className="text-gray-400 text-lg hover:text-indigo-600 transition-color duration-200">
+                home
               </button>
             </Link>
           </div>

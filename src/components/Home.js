@@ -210,14 +210,16 @@ export default function Home() {
         <div className="content grid grid-cols-2 justify-items-center"> 
             <div className="leftbox box">
                 <div className="editor">
-                    <button className="generatebtn px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all"
-                       onClick={generateWidget}
-                    >
-                        Generate Widget
-                    </button>
-                    <button className="copybtn px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
-                        Copy Code
-                    </button>
+                    <div class="mb-2 flex justify-end">
+                      <button className="copybtn ml-3 px-2 py-1 text-sm font-medium text-green-400 border border-green-400 rounded-2xl hover:bg-green-400 hover:text-white transition-color duration-200">
+                          Copy Code
+                      </button>
+                      <button className="generatebtn ml-3 px-2 py-1 text-sm font-medium text-indigo-600 border border-indigo-600 rounded-2xl hover:bg-indigo-600 hover:text-white transition-color duration-200"
+                        onClick={generateWidget}
+                      >
+                          Generate Widget
+                      </button>
+                    </div>
                     <div class="mb-6">
                         <textarea rows="5" name="message" id="message" placeholder="Your Widget Code" 
                         class="editorbox font-mono bg-gray-800 w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 text-gray-50 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" 
