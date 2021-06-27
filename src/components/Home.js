@@ -49,10 +49,13 @@ export default function Home() {
     const [code, setCode] = useState('');
 
     const changeTypeLink = (current) => {
+    var i = 0
     for (var prop in profiles) {
             if (profiles[prop].name === current){
-            setCurrentProfile(profiles[prop].name)
+            setCurrentProfile(i)
+            break
             }
+        i+=1
         }
     }
 
@@ -96,9 +99,13 @@ export default function Home() {
       console.log(profiles[currentProfile])
       if (profiles[currentProfile].provider === GITHUB_PROVIDER) {
         setCode(Github())
+        document.getElementById('widget-preview').src = "about:blank";
+        document.getElementById('widget-preview').src = "data:text/html;charset=utf-8," + escape('<div></div>')+escape(Github());
       }
-      else if (profiles[currentProfile] === DEVPOST_PROVIDER) {
+      else if (profiles[currentProfile].provider === DEVPOST_PROVIDER) {
         setCode(Devpost())
+        document.getElementById('widget-preview').src = "about:blank";
+        document.getElementById('widget-preview').src = "data:text/html;charset=utf-8," + escape('<div></div>')+escape(Devpost());
       }
     }
  
@@ -186,7 +193,7 @@ export default function Home() {
         
         window.onload = function() {
           widget.setOptions( {
-            id: "fairnightzz",
+            id: "${profiles[currentProfile]}",
             theme: 
             {
               background1: "${types[bg1color].name.toLowerCase()}-${bg1shade}",
@@ -226,7 +233,9 @@ export default function Home() {
                         class="editorbox font-mono bg-gray-800 w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 text-gray-50 dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" 
                         required value={code} spellcheck="false"></textarea>
                     </div>
-                    <iframe id="widget-preview" height="400" width="200"></iframe>
+                    <div class="place-items-center">
+                      <iframe id="widget-preview" width="500" height="400"></iframe>
+                    </div>
                 </div>
             </div>
             <div>
@@ -241,7 +250,7 @@ export default function Home() {
                                 
                                 <div className="relative">
                                     <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                                    onChange={e => (changeTypeLink(e.target.value))} value={profiles[currentProfile]}>
+                                    onChange={e => (changeTypeLink(e.target.value))}>
                                     {profiles.map(function(profile, i) {
                                         return <option key={i}>{profile.name}</option>
                                     })}
@@ -281,8 +290,8 @@ export default function Home() {
                                 <div className="relative">
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setBG1Color(e.target.value)}} value={bg1color}>
-                                    {types.map(function(name, i) {
-                                        return <option key={i}>{name.name}</option>
+                                    {types.map(function(type, i) {
+                                        return <option key={i} value={i}>{type.type}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -314,8 +323,8 @@ export default function Home() {
                                 <div className="relative">
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setBG2Color(e.target.value)}} value={bg2color}>
-                                    {types.map(function(name, i) {
-                                        return <option key={i}>{name.name}</option>
+                                    {types.map(function(type, i) {
+                                        return <option key={i} value={i}>{type.type}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -347,8 +356,8 @@ export default function Home() {
                                 <div className="relative">
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setTitleColor(e.target.value)}} value={titlecolor}>
-                                    {types.map(function(name, i) {
-                                        return <option key={i}>{name.name}</option>
+                                    {types.map(function(type, i) {
+                                        return <option key={i} value={i}>{type.type}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -380,8 +389,8 @@ export default function Home() {
                                 <div className="relative">
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setTitleColorHover(e.target.value)}} value={titlecolorhover}>
-                                    {types.map(function(name, i) {
-                                        return <option key={i}>{name.name}</option>
+                                    {types.map(function(type, i) {
+                                        return <option key={i} value={i}>{type.type}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -413,8 +422,8 @@ export default function Home() {
                                 <div className="relative">
                                     <select className="block h-12 appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
                                     onChange={(e) => {e.preventDefault(); setTextColor(e.target.value)}} value={textcolor}>
-                                    {types.map(function(name, i) {
-                                        return <option key={i}>{name.name}</option>
+                                    {types.map(function(type, i) {
+                                        return <option key={i} value={i}>{type.type}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">

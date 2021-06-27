@@ -11,7 +11,7 @@ import Logo from '../assets/logo.png'
 
 function removeToken(){
   window.localStorage.removeItem("token")
-  window.location.reload()
+  window.location.pathname="/login"
 }
 
 export default function Layout({children}) {
