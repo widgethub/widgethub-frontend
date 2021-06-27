@@ -34,8 +34,8 @@ export const updateProfile = (updatedProvider) => {
 export const deleteProfile = (provider_id) => {
   return axios.delete(
     API_URL+'profile/providers',
-    { provider_id: provider_id },
-    { headers: {'Content-Type': 'application/json', 'x-access-token': getToken() }}
+    { headers: {'Content-Type': 'application/json', 'x-access-token': getToken() },
+      data: { provider_id: provider_id }}
   )
     .then(res => res)
     .catch(err => err)

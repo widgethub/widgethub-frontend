@@ -105,15 +105,18 @@ export default function Profiles() {
         name: name,
         info: infoVal
       }
+
       const response = await updateProfile(updateProvider);
       setProfiles([...profiles.filter(profile => profile.id != updateProvider.id), updateProvider])
 
     }
   }
 
-  const removeProfile = async (index) => {
-    await deleteProfile(profiles[index].id);
-    setProfiles(profiles.filter(profile => profile.id != profiles[index].id))
+  const removeProfile = async (e) => {
+    e.preventDefault();
+
+    const response = await deleteProfile(profiles[currentProfile].id);
+    setProfiles(profiles.filter(profile => profile.id != profiles[currentProfile].id))
   }
 
   return(
