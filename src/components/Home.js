@@ -24,7 +24,7 @@ export default function Home() {
     const [textshade, setTextShade] = useState(0);
 
     const GITHUB_PROVIDER =    1;
-    const FACEBOOK_PROVIDER =  2;
+    const DEVPOST_PROVIDER =  2;
     const INSTAGRAM_PROVIDER = 3;
     const LINKEDIN_PROVIDER =  4;
 
@@ -102,7 +102,7 @@ export default function Home() {
       if (profiles[currentProfile].provider === GITHUB_PROVIDER) {
         setCode(Github())
       }
-      else if (profiles[currentProfile] === "Devpost") {
+      else if (profiles[currentProfile] === DEVPOST_PROVIDER) {
         setCode(Devpost())
       }
     }
@@ -142,11 +142,11 @@ export default function Home() {
             id: "${profiles[currentProfile]}",
             theme: 
             {
-              background1: "${bg1color}-${bg1shade}",
-              background2: "${bg2color}-${bg2shade}",
-              titleColor: "${titlecolor}-${titleshade}",
-              titleHoverColor: "${titlecolorhover}-${titleshadehover}",
-              descriptionColor: "${textcolor}-${textshade}"
+              background1: "${types[bg1color].type.toLowerCase()}-${bg1shade}",
+              background2: "${types[bg2color].type.toLowerCase()}-${bg2shade}",
+              titleColor: "${types[titlecolor].type.toLowerCase()}-${titleshade}",
+              titleHoverColor: "${types[titlecolorhover].type.toLowerCase()}-${titleshadehover}",
+              descriptionColor: "${types[textcolor].type.toLowerCase()}-${textshade}"
             },
             edges: true,
             customMessage: "${name}",
@@ -186,11 +186,11 @@ export default function Home() {
             id: "fairnightzz",
             theme: 
             {
-              background1: "${bg1color}-${bg1shade}",
-              background2: "${bg2color}-${bg2shade}",
-              titleColor: "${titlecolor}-${titleshade}",
-              titleHoverColor: "${titlecolorhover}-${titleshadehover}",
-              descriptionColor: "${textcolor}-${textshade}"
+              background1: "${types[bg1color].type.toLowerCase()}-${bg1shade}",
+              background2: "${types[bg2color].type.toLowerCase()}-${bg2shade}",
+              titleColor: "${types[titlecolor].type.toLowerCase()}-${titleshade}",
+              titleHoverColor: "${types[titlecolorhover].type.toLowerCase()}-${titleshadehover}",
+              descriptionColor: "${types[textcolor].type.toLowerCase()}-${textshade}"
             },
             edges: true,
             customMessage: "${name}",
@@ -215,7 +215,7 @@ export default function Home() {
                     >
                         Generate Widget
                     </button>
-                    <button className="copybtn px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
+                    <button onClick={() => navigator.clipboard.writeText(code)}className="copybtn px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
                         Copy Code
                     </button>
                     <div class="mb-6">
