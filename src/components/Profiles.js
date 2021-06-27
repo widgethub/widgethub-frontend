@@ -67,7 +67,7 @@ export default function Profiles() {
     setFirst(profiles[index].first);
     setLast(profiles[index].last);
     setInfoVal(profiles[index].info);
-    setType(profiles[index].type);
+    setType(profiles[index].provider);
     setState(1);
   }
 
@@ -194,9 +194,9 @@ export default function Profiles() {
                 </label>
                 <div className="relative">
                   <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                  id="grid-type" onChange={e => (
+                  id="grid-type" value={parseInt(typeSelected)} onChange={e => (
                     changeTypeLink(e.target.value)
-                    )} value={typeSelected}>
+                    )} >
                     {types.map(function(type, i) {
                       return <option key={i}>{type.type}</option>
                     })}

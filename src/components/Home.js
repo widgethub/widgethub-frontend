@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import '../css/Home.css';
 
-import { getProfiles, setProfiles } from '../services/profile.service';
+
+import { getProfiles } from '../services/profile.service';
+import { getToken, saveToken } from '../services/auth.service';
 
 
 export default function Home() {
@@ -49,23 +51,24 @@ export default function Home() {
         {type: "Pink", link: "linkedin.com/in/"}
     ];
 
-    const changeTypeLink = (type) => {
-    setType(type)
-    for (var prop in types) {
-            if (types[prop].type === type){
-            setLink(types[prop].link)
+    const [code, setCode] = useState('');
+
+    const changeTypeLink = (current) => {
+    for (var prop in profiles) {
+            if (profiles[prop].name === current){
+            setCurrentProfile(profiles[prop].name)
             }
         }
     }
 
     function decrement(get, set) {
-        if(get == 100 || get == 50) set(get - 50);
-        else if(get != 0) set(get - 100);
+        if(get === 100 || get === 50) set(get - 50);
+        else if(get !== 0) set(get - 100);
     }
 
     function increment(get, set) {
-        if(get == 0 || get == 50) set(get + 50);
-        else if(get != 900) set(get + 100);
+        if(get === 0 || get === 50) set(get + 50);
+        else if(get !== 900) set(get + 100);
     }
 
     const decrementButtons = document.querySelectorAll(
@@ -84,7 +87,38 @@ export default function Home() {
     btn.addEventListener("click", increment);
     });
 
-    var devpost = ` <script id="widgethubscript">
+    const [profiles, setProfiles] = useState([
+      // { title: 'My Exs' , type: 'Github', url: 'zhehaizhang@gmail.com', id: 1},
+      // { title: 'Archnemesis', type: 'Instagram', url: 'zhehai@zhang.com', id: 2},
+      // { title: 'Me', type: 'Facebook', url: 'zhehaizhang.com', id: 3}
+    ]);
+
+    // Update existing profiles - 1
+    const [currentProfile, setCurrentProfile] = useState(0)
+
+    const generateWidget = (e) => {
+      e.preventDefault()
+      console.log(profiles[currentProfile])
+      if (profiles[currentProfile].provider === GITHUB_PROVIDER) {
+        setCode(Github())
+      }
+      else if (profiles[currentProfile] === "Devpost") {
+        setCode(Devpost())
+      }
+    }
+ 
+    useEffect(async () => {
+      // push user to home page if not logged in
+
+      /* query for profiles */
+      const response = await getProfiles(); 
+      setProfiles(response.data.providers);
+
+    }, []);
+
+
+
+    const Devpost = () => { return ` <script id="widgethubscript">
     
     (function(r1,r2){
       console.log(r1,r2);
@@ -105,17 +139,17 @@ export default function Home() {
         
         window.onload = function() {
           widget.setOptions( {
-            id: "fairnightzz",
+            id: "${profiles[currentProfile]}",
             theme: 
             {
-              background1: "indigo-800",
-              background2: "blue-800",
-              titleColor: "indigo-50",
-              titleHoverColor: "red-500",
-              descriptionColor: "gray-300"
+              background1: "${bg1color}-${bg1shade}",
+              background2: "${bg2color}-${bg2shade}",
+              titleColor: "${titlecolor}-${titleshade}",
+              titleHoverColor: "${titlecolorhover}-${titleshadehover}",
+              descriptionColor: "${textcolor}-${textshade}"
             },
             edges: true,
-            customMessage: "poo",
+            customMessage: "${name}",
             div: r1
           })
 
@@ -126,8 +160,9 @@ export default function Home() {
     }(Math.random().toString(36).substring(7), Math.random().toString(36).substring(7)))
       
     </script>`
+  }
 
-    var github = ` <script id="widgethubscript">
+    const Github = () => { return ` <script id="widgethubscript">
     
     (function(r1,r2){
       console.log(r1,r2);
@@ -151,14 +186,14 @@ export default function Home() {
             id: "fairnightzz",
             theme: 
             {
-              background1: "indigo-800",
-              background2: "blue-800",
-              titleColor: "indigo-50",
-              titleHoverColor: "red-500",
-              descriptionColor: "gray-300"
+              background1: "${bg1color}-${bg1shade}",
+              background2: "${bg2color}-${bg2shade}",
+              titleColor: "${titlecolor}-${titleshade}",
+              titleHoverColor: "${titlecolorhover}-${titleshadehover}",
+              descriptionColor: "${textcolor}-${textshade}"
             },
             edges: true,
-            customMessage: "poo",
+            customMessage: "${name}",
             div: r1
           })
 
@@ -169,19 +204,24 @@ export default function Home() {
     }(Math.random().toString(36).substring(7), Math.random().toString(36).substring(7)))
       
     </script>`
+  }
 
     return(
         <div className="content grid grid-cols-2 justify-items-center"> 
             <div className="leftbox box">
                 <div className="editor">
-                    <button className="generatebtn px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
+                    <button className="generatebtn px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all"
+                       onClick={generateWidget}
+                    >
                         Generate Widget
                     </button>
                     <button className="copybtn px-5 py-1 rounded-xl text-sm font-medium text-indigo-600 bg-white outline-none focus:outline-none m-1 hover:m-0 focus:m-0 border border-indigo-600 hover:border-4 focus:border-4 transition-all">
                         Copy Code
                     </button>
                     <div class="mb-6">
-                        <textarea rows="5" name="message" id="message" placeholder="Your Message" class="editorbox w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" required></textarea>
+                        <textarea rows="5" name="message" id="message" placeholder="Your Widget Code" 
+                        class="editorbox w-full px-3 py-2 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500" 
+                        required value={code}></textarea>
                     </div>
                 </div>
             </div>
@@ -197,9 +237,9 @@ export default function Home() {
                                 
                                 <div className="relative">
                                     <select className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" 
-                                    id="grid-type" onChange={e => (changeTypeLink(e.target.value))} value={typeSelected}>
-                                    {types.map(function(type, i) {
-                                        return <option key={i}>{type.type}</option>
+                                    id="grid-type" onChange={e => (changeTypeLink(e.target.value))} value={profiles[currentProfile]}>
+                                    {profiles.map(function(profile, i) {
+                                        return <option key={i}>{profile.name}</option>
                                     })}
                                     </select>
                                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
