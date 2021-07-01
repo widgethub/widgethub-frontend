@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# WidgetHub, a new way to widget
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Try it out [here](https://widgethub.space/)
 
-## Available Scripts
+## What it does
+The purpose of WidgetHut is to provide a quick and intuitive way to build plug and play widgets for your own websites. Simply add your handle, customize how you want your widget to look, and paste the code we give you onto your own site.
 
-In the project directory, you can run:
+## Technologies
+WidgetHub’s frontend was built using reactjs with tailwindcss. The backend is a typescript express app that provides both REST and GraphQL endpoints. The frontend communicates to the backend via REST, while the published widgets use the GraphQL endpoints. We are also using PostgreSQL for our database.
 
-### `npm start`
+## Challenges
+We needed to write a lightweight packet of code for our users to include into their website, while still needing to look decent, make GraphQL queries, and remain configurable. This took a bit of pondering to accomplish. The code snippet the user copies includes the main code from our server. We then override variables the main code uses in the snippet, so it remains accessible to be tweaked later.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Getting the live preview of the widget as you are customizing it also took a bit of creativity. We ended up injecting the code into an iframe on every update.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Accomplishments
+In many past hackathons, we always spent a lot of time tumbling over things like cors and getting jwt authentication working. This time was a lot cleaner, and it might be due to our extensive documentation of endpoints, enums and the graphql schema, so frontend and backend had a lot easier time connecting.
 
-### `npm test`
+## Learning Experience
+Our team has very little experience with react, so this hackathon gave us a decent amount of exposure. In addition, we normally don’t pay too much attention to ui, but we gave it a bit more love this hackathon, and are a bit more happy with the results.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Next steps
+An obvious next step would be to expand our library of components with more layouts and customization options. Our infrastructure on the server is also a bit messy. Currently, we have each webapp along with postgres running all together on the vps, so dockerizing them would have been nice.
